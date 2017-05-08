@@ -1,0 +1,90 @@
+<template lang="html">
+  <div class="card" :class="animal.species" :id="'card' + animal.id">
+    <div class="card-block">
+      <div class="row">
+        <!-- species and id -->
+        <div class="col-4 col-md-3 col-lg-2">
+          <span class="label"><p>NDOW ID</p></span>
+          <span class="block field upper">
+            {{ animal.species }}-{{ animal.ndow_id }}
+          </span>
+        </div>
+
+        <!-- date -->
+        <div class="col-4 col-md-3 col-lg-2">
+          <span class="label">Date</span>
+          <span class="block field">{{ animal.date }}</span>
+        </div>
+
+        <!-- hunt unit -->
+        <div class="col-2 col-md-2 col-lg-1">
+          <span class="label">HU</span>
+          <span class="block field">{{ animal.hunt_unit }}</span>
+        </div>
+
+        <!-- status -->
+        <div class="col-2 col-md-3 col-lg-2 hidden-sm-down">
+          <span class="label">Status</span>
+          <span class="block field">{{ animal.status }}</span>
+        </div>
+
+        <!-- sex -->
+        <div class="col-2 hidden-md-down">
+          <span class="label">Sex</span>
+          <span class="block field">{{ animal.sex }}</span>
+        </div>
+
+        <!-- age  -->
+        <div class="col-2 hidden-md-down">
+          <span class="label">Age</span>
+          <span class="block field">{{ animal.age }}</span>
+        </div>
+
+        <!-- chevron -->
+        <div class="col-1 col-md-1">
+          <i class="fa fa-chevron-right" v-bind:id="'toggle' + animal.id"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  props: ['animal']
+}
+</script>
+
+<style lang="css">
+.card {
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.card:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.block {
+  display: block;
+}
+
+.label {
+  position: absolute;
+  top: -12px;
+  left: 15px;
+  font-size: 13px;
+  font-weight: 200;
+  letter-spacing: .1em;
+}
+
+.field {
+  position: absolute;
+  top: 8px;
+}
+
+.upper {
+  text-transform: uppercase;
+}
+</style>
