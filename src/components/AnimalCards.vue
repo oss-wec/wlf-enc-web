@@ -87,4 +87,49 @@ export default {
 .upper {
   text-transform: uppercase;
 }
+
+.rbhs {
+  border: 1px solid #7d4fff;
+  border-left: 10px solid #7d4fff;
+}
+
+.mtli {
+  border: 1px solid #FFA726;
+  border-left: 10px solid #FFA726;
+}
+
+.prgn {
+  border: 1px solid #90358b;
+  border-left: 10px solid #90358b;
+}
+
+.cbhs {
+  border: 1px solid #45d1ff;
+  border-left: 10px solid #45d1ff;
+}
+
+.muld {
+  border: 1px solid #2e7d32;
+  border-left: 10px solid #2e7d32;
+}
+
+.mtgt {
+  border: 1px solid #294ff6;
+  border-left: 10px solid #294ff6;
+}
+
+.rmel {
+  border: 1px solid #E53935;
+  border-left: 10px solid #E53935;
+}
+
+.blbr {
+  border: 1px solid #795548;
+  border-left: 10px solid #795548;
+}
+
+.dbhs {
+  border: 1px solid #FFD54F;
+  border-left: 10px solid #FFD54F;
+}
 </style>
