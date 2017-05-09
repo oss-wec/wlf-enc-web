@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="card" :class="animal.species" :id="'card' + animal.id">
+  <div class="card" :class="animal.species" :id="'card' + animal.id" v-on:click="logInfo" :style="styleObject">
     <div class="card-block">
       <div class="row">
         <!-- species and id -->
@@ -51,7 +51,40 @@
 
 <script>
 export default {
-  props: ['animal']
+  props: ['animal'],
+  data () {
+    return {
+      isOpen: false,
+      isActive: false,
+      colors: {
+        rbhs: '#7d4fff',
+        mtli: '#ffa726',
+        prgn: '#90358b',
+        cbhs: '#45d1ff',
+        muld: '#2e7032',
+        mtgt: '#294ff6',
+        rmel: '#e53935',
+        blbr: '#795548',
+        dbhs: '#ffd54f'
+      }
+    }
+  },
+  methods: {
+    logInfo () {
+      this.isActive = true
+      console.log(this.styleObject)
+    }
+  },
+  computed: {
+    styleObject: function () {
+      if (this.isActive) {
+        return {
+          backgroundColor: this.colors[this.animal.species],
+          color: '#fff'
+        }
+      }
+    }
+  }
 }
 </script>
 
@@ -131,5 +164,10 @@ export default {
 .dbhs {
   border: 1px solid #FFD54F;
   border-left: 10px solid #FFD54F;
+}
+
+.active {
+  background-color: blue;
+  color: white;
 }
 </style>
