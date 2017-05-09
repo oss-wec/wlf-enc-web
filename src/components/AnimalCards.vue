@@ -46,6 +46,9 @@
         </div>
       </div>
     </div>
+    <div class="card-footer" v-if="isActive">
+      hello from the footer
+    </div>
   </div>
 </template>
 
@@ -71,7 +74,7 @@ export default {
   },
   methods: {
     logInfo () {
-      this.isActive = true
+      this.isActive = !this.isActive
       console.log(this.styleObject)
     }
   },
@@ -80,7 +83,8 @@ export default {
       if (this.isActive) {
         return {
           backgroundColor: this.colors[this.animal.species],
-          color: '#fff'
+          color: '#fff',
+          border: `1px solid ${this.colors[this.animal.species]}`
         }
       }
     }
@@ -169,5 +173,10 @@ export default {
 .active {
   background-color: blue;
   color: white;
+}
+
+.card-footer {
+  color: black;
+  background-color: '#fff';
 }
 </style>
