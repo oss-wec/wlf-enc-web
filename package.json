@@ -15,7 +15,9 @@
   },
   "dependencies": {
     "axios": "^0.16.1",
-    "vue": "^2.2.6"
+    "moment": "^2.18.1",
+    "vue": "^2.2.6",
+    "vue-moment": "^2.0.2"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",

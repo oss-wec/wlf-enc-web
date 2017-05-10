@@ -13,7 +13,7 @@
         <!-- date -->
         <div class="col-4 col-md-3 col-lg-2">
           <span class="label">Date</span>
-          <span class="block field">{{ animal.date }}</span>
+          <span class="block field">{{ humanDate(animal.date) }}</span>
         </div>
 
         <!-- hunt unit -->
@@ -46,14 +46,20 @@
         </div>
       </div>
     </div>
-    <div class="card-footer" v-if="isActive">
-      hello from the footer
-    </div>
+    <!-- <div class="card-footer" v-if="isActive"> -->
+      <animal-card-footer v-if="isActive"></animal-card-footer>
+    <!-- </div> -->
   </div>
 </template>
 
 <script>
+import AnimalCardFooter from './AnimalCardFooter'
+import moment from 'moment'
+
 export default {
+  components: {
+    AnimalCardFooter
+  },
   props: ['animal'],
   data () {
     return {
@@ -75,7 +81,12 @@ export default {
   methods: {
     logInfo () {
       this.isActive = !this.isActive
-      console.log(this.styleObject)
+      if (this.isActive) console.log('API CALL: localhost:1313/elements/' + this.animal.id)
+    },
+    humanDate (date) {
+      date = moment(date).format('l')
+      if (date === 'Invalid date') return 'n/a'
+      return date
     }
   },
   computed: {
