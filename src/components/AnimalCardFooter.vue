@@ -16,17 +16,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>12</td>
-              <td>red</td>
-              <td>tag</td>
+            <tr v-for="mark in animal.marks">
+              <td>{{ mark.mark_id }}</td>
+              <td>{{ mark.mark_color }}</td>
+              <td>{{ mark.mark_type }}</td>
               <td>right ear</td>
-            </tr>
-            <tr>
-              <td>12</td>
-              <td>blue</td>
-              <td>tag</td>
-              <td>left ear</td>
             </tr>
           </tbody>
         </table>
@@ -94,6 +88,7 @@
 
 <script>
 export default {
+  props: ['animal']
 }
 </script>
 
