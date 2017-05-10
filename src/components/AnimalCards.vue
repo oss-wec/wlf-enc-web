@@ -188,6 +188,6 @@ export default {
 
 .card-footer {
   color: black;
-  background-color: '#fff';
+  background-color: '#ffffff';
 }
 </style>

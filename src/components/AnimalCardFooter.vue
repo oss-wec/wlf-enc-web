@@ -41,19 +41,12 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>10721</td>
-              <td>161.151</td>
-              <td>GPS</td>
-              <td class="hidden-xs-down">2017-01-01</td>
-              <td class="hidden-xs-down">2017-04-01</td>
-            </tr>
-            <tr>
-              <td>20184</td>
-              <td>161.002</td>
-              <td>GPS</td>
-              <td class="hidden-xs-down">2017-04-01</td>
-              <td class="hidden-xs-down">2017-10-01</td>
+            <tr v-for="device in animal.devices">
+              <td>{{ device.serial_num }}</td>
+              <td>{{ device.frequency }}</td>
+              <td>{{ device.type }}</td>
+              <td class="hidden-xs-down">{{ humanDate(device.inservice) }}</td>
+              <td class="hidden-xs-down">{{ humanDate(device.outservice) }}</td>
             </tr>
           </tbody>
         </table>
@@ -72,23 +65,34 @@
     <div class="row pad-bottom">
       <div class="col">
         <span class="col-title">Comments:</span>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p>{{ animal.comments }}</p>
       </div>
     </div>
 
     <!-- lab ids -->
     <div class="row pad-bottom">
       <div class="col">
-        <span class="col-title">Lab-ID</span>
-        <p>17-1, 1842, 2017-12</p>
+        <span class="col-title">Lab-IDs:</span>
+        <p>
+          <span v-for="id in animal.labids">{{ id }}  </span>
+        </p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import moment from 'moment'
+
 export default {
-  props: ['animal']
+  props: ['animal'],
+  methods: {
+    humanDate (date) {
+      date = moment(date).format('l')
+      if (date === 'Invalid date') return 'n/a'
+      return date
+    }
+  }
 }
 </script>
 
