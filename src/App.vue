@@ -12,6 +12,7 @@
 <script>
 import AnimalCards from './components/AnimalCards'
 import AnimalsFilter from './components/AnimalsFilter'
+import axios from 'axios'
 
 export default {
   name: 'app',
@@ -41,8 +42,14 @@ export default {
           sex: 'male',
           age: 'adult'
         }
-      ]
+      ],
+      apiRes: {}
     }
+  },
+  created () {
+    axios.get('http://localhost:1313/elements')
+    .then(data => { this.animals = data.data.data })
+    .catch(err => console.log(err))
   }
 }
 </script>
