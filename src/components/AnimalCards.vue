@@ -46,9 +46,7 @@
         </div>
       </div>
     </div>
-    <!-- <div class="card-footer" v-if="isActive"> -->
-      <animal-card-footer v-if="isActive" v-bind:animal="animal"></animal-card-footer>
-    <!-- </div> -->
+    <animal-card-footer v-if="isActive" v-bind:animal="animal"></animal-card-footer>
   </div>
 </template>
 

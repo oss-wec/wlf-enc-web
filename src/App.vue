@@ -4,7 +4,7 @@
       <AnimalsFilter></AnimalsFilter>
     </div>
     <div class="container" id="animals">
-      <AnimalCards v-for="animal in animals"
+      <AnimalCards v-for="animal in animalList"
                    v-bind:animal="animal"
                    :key="animal.id"
       ></AnimalCards>
@@ -15,7 +15,7 @@
 <script>
 import AnimalCards from './components/AnimalCards'
 import AnimalsFilter from './components/AnimalsFilter'
-import axios from 'axios'
+import { mapState } from 'vuex'
 
 export default {
   name: 'app',
@@ -23,37 +23,43 @@ export default {
     AnimalCards,
     AnimalsFilter
   },
-  data () {
-    return {
-      animals: [
-        {
-          id: 1,
-          species: 'cbhs',
-          ndow_id: 4200,
-          date: '2017-01-01',
-          hunt_unit: 12,
-          status: 'alive',
-          sex: 'male',
-          age: 'adult'
-        }, {
-          id: 2,
-          species: 'dbhs',
-          ndow_id: 4201,
-          date: '2017-01-01',
-          hunt_unit: 12,
-          status: 'alive',
-          sex: 'male',
-          age: 'adult'
-        }
-      ],
-      apiRes: {}
-    }
-  },
-  created () {
-    axios.get('http://localhost:1313/elements')
-    .then(data => { this.animals = data.data.data })
-    .catch(err => console.log(err))
+  computed: mapState([
+    'animalList'
+  ]),
+  mounted: function () {
+    this.$store.dispatch('getAnimals')
   }
+  // data () {
+  //   return {
+  //     animals: [
+  //       {
+  //         id: 1,
+  //         species: 'cbhs',
+  //         ndow_id: 4200,
+  //         date: '2017-01-01',
+  //         hunt_unit: 12,
+  //         status: 'alive',
+  //         sex: 'male',
+  //         age: 'adult'
+  //       }, {
+  //         id: 2,
+  //         species: 'dbhs',
+  //         ndow_id: 4201,
+  //         date: '2017-01-01',
+  //         hunt_unit: 12,
+  //         status: 'alive',
+  //         sex: 'male',
+  //         age: 'adult'
+  //       }
+  //     ],
+  //     apiRes: {}
+  //   }
+  // },
+  // created () {
+  //   axios.get('http://localhost:1313/elements')
+  //   .then(data => { this.animals = data.data.data })
+  //   .catch(err => console.log(err))
+  // }
 }
 </script>
 
