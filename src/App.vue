@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <div class="container">
+      <AnimalsFilter></AnimalsFilter>
+    </div>
     <div class="container" id="animals">
       <AnimalCards v-for="animal in animals"
                    v-bind:animal="animal"
