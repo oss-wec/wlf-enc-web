@@ -9,12 +9,15 @@
                    :key="animal.id"
       ></AnimalCards>
     </div>
+    <hr>
+    <PaginationContainer></PaginationContainer>
   </div>
 </template>
 
 <script>
 import AnimalCards from './components/AnimalCards'
 import AnimalsFilter from './components/AnimalsFilter'
+import PaginationContainer from './components/PaginationContainer'
 // import { mapState } from 'vuex'
 import { mapGetters } from 'vuex'
 
@@ -22,12 +25,13 @@ export default {
   name: 'app',
   components: {
     AnimalCards,
-    AnimalsFilter
+    AnimalsFilter,
+    PaginationContainer
   },
   // computed: mapState([ 'animalList' ]),
   computed: {
     ...mapGetters({
-      animalList: 'filterBySpecies'
+      animalList: 'displayData'
     })
   },
   mounted: function () {
