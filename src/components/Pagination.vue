@@ -14,8 +14,22 @@
           <a href="#" class="page-link" @click.prevent="vuexPageChanged(lastPage)">&raquo;</a>
         </li>
     </ul>
+
+    <div class="d-flex justify-content-center">
+      <div class="control-group">
+        <label for="ipp">Item Per Page</label>
+        <select class="input-control" name="ipp" @change="changeIpp" v-model="ipp">
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="10">10</option>
+        </select>
+      </div>
+    </div>
     <p class="text-muted text-center">
-      records: {{ recordsRange.begin }} - {{ recordsRange.end }} of {{ pgTotalItems }}
+      <small><em>{{ recordsRange.begin }} - {{ recordsRange.end }} of {{ pgTotalItems }}</em></small>
     </p>
   </nav>
 </template>
@@ -28,6 +42,11 @@ const lowerBound = (num, limit) => {
 }
 
 export default {
+  data () {
+    return {
+      ipp: 10
+    }
+  },
   props: {
     currentPage: {
       type: Number,
@@ -82,6 +101,11 @@ export default {
 
     vuexPageChanged (pageNum) {
       this.$store.dispatch('changePage', { page: pageNum })
+    },
+
+    changeIpp () {
+      this.$store.dispatch('changePage', { page: 1 })
+      this.$store.dispatch('changeItemsPerPage', { items: this.ipp })
     }
   }
 }

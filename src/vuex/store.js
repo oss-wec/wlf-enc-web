@@ -10,7 +10,7 @@ const state = {
   filterSpecies: '',
 
   pagination: {
-    itemsPerPage: 3, // hard coded, but this will be selectable
+    itemsPerPage: 10, // hard coded, but this will be selectable
     currentPage: 1, // will always start at 1
     visiblePages: 5 // will default to 5 for now...
   }
@@ -71,6 +71,10 @@ const actions = {
 
   changePage ({ commit }, payload) {
     commit('setCurrentPage', { page: payload.page })
+  },
+
+  changeItemsPerPage ({ commit }, payload) {
+    commit('setItemsPerPage', { items: payload.items })
   }
 }
 
@@ -85,6 +89,10 @@ const mutations = {
 
   setCurrentPage (state, payload) {
     state.pagination.currentPage = payload.page
+  },
+
+  setItemsPerPage (state, payload) {
+    state.pagination.itemsPerPage = payload.items
   }
 }
 
