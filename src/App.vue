@@ -15,7 +15,8 @@
 <script>
 import AnimalCards from './components/AnimalCards'
 import AnimalsFilter from './components/AnimalsFilter'
-import { mapState } from 'vuex'
+// import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'app',
@@ -23,9 +24,12 @@ export default {
     AnimalCards,
     AnimalsFilter
   },
-  computed: mapState([
-    'animalList'
-  ]),
+  // computed: mapState([ 'animalList' ]),
+  computed: {
+    ...mapGetters({
+      animalList: 'filterBySpecies'
+    })
+  },
   mounted: function () {
     this.$store.dispatch('getAnimals')
   }

@@ -89,14 +89,20 @@ const state = {
   //     age: 'adult'
   //   }
   // ]
-  animalList: []
+  animalList: [],
+  filterSpecies: ''
 }
 
 const getters = {
-  // area13: state => {
-  //   return state.animalList.filter(animal => animal.hunt_unit === 13)
-  // }
-  // allAnimals: state => { return state.animalList }
+  area13: state => {
+    return state.animalList.filter(animal => animal.species === 'muld')
+  },
+  filterBySpecies: state => {
+    if (state.filterSpecies === '') {
+      return state.animalList
+    }
+    return state.animalList.filter(animal => animal.species === state.filterSpecies)
+  }
 }
 
 const actions = {
@@ -104,12 +110,18 @@ const actions = {
     axios.get('http://localhost:1313/elements')
     .then(response => commit('setAnimals', { animals: response.data.data }))
     .catch(err => console.log(err))
+  },
+  setFilter ({ commit }, payload) {
+    commit('setFilterSpecies', { species: payload.species })
   }
 }
 
 const mutations = {
   setAnimals (state, { animals }) {
     state.animalList = animals
+  },
+  setFilterSpecies (state, payload) {
+    state.filterSpecies = payload.species
   }
 }
 
