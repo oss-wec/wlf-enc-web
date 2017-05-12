@@ -34,9 +34,9 @@
 export default {
   data () {
     return {
-      field: 'hunt unit',
+      field: 'species',
       expression: '=',
-      criteria: '12'
+      criteria: 'muld'
     }
   },
   methods: {

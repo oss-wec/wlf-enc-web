@@ -10,7 +10,7 @@ const state = {
   filterSpecies: '',
 
   pagination: {
-    itemsPerPage: 5, // hard coded, but this will be selectable
+    itemsPerPage: 3, // hard coded, but this will be selectable
     currentPage: 1, // will always start at 1
     visiblePages: 5 // will default to 5 for now...
   }
@@ -28,11 +28,11 @@ const getters = {
     return state.animalList.filter(animal => animal.species === state.filterSpecies)
   },
 
-  displayData: state => {
+  displayData: (state, getters) => {
     const cp = state.pagination.currentPage
     const ipp = state.pagination.itemsPerPage
 
-    return state.animalList.slice(cp * ipp - ipp, cp * ipp)
+    return getters.filterBySpecies.slice(cp * ipp - ipp, cp * ipp)
   },
 
   numRecords: (state, getters) => {
@@ -53,7 +53,7 @@ const getters = {
 
     return {
       begin: (cp * ipp - ipp) + 1,
-      end: cp * ipp
+      end: cp * ipp > getters.pgTotalItems ? getters.pgTotalItems : cp * ipp
     }
   }
 }
