@@ -11,6 +11,10 @@
     </div>
     <hr>
     <PaginationContainer></PaginationContainer>
+
+    <hr>
+
+    <EncDataEntry></EncDataEntry>
   </div>
 </template>
 
@@ -18,7 +22,7 @@
 import AnimalCards from './components/AnimalCards'
 import AnimalsFilter from './components/AnimalsFilter'
 import PaginationContainer from './components/PaginationContainer'
-// import { mapState } from 'vuex'
+import EncDataEntry from './components/EncDataEntry'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -26,7 +30,8 @@ export default {
   components: {
     AnimalCards,
     AnimalsFilter,
-    PaginationContainer
+    PaginationContainer,
+    EncDataEntry
   },
   // computed: mapState([ 'animalList' ]),
   computed: {
