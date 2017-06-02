@@ -79,7 +79,7 @@ export default {
   methods: {
     logInfo () {
       this.isActive = !this.isActive
-      if (this.isActive) console.log('API CALL: localhost:1313/elements/' + this.animal.id)
+      // if (this.isActive) console.log('API CALL: localhost:1313/elements/' + this.animal.id)
     },
     humanDate (date) {
       date = moment(date).format('l')
