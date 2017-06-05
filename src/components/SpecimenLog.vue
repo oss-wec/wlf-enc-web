@@ -1,5 +1,7 @@
 <template lang="html">
   <div>
+    <Navigation></Navigation>
+
     <div class="container">
       <AnimalsFilter></AnimalsFilter>
     </div>
@@ -15,6 +17,7 @@
 </template>
 
 <script>
+import Navigation from './Navigation'
 import AnimalCards from './AnimalCards'
 import AnimalsFilter from './AnimalsFilter'
 import PaginationContainer from './PaginationContainer'
@@ -24,6 +27,7 @@ export default {
   name: 'SpecimenLog',
 
   components: {
+    Navigation,
     AnimalCards,
     AnimalsFilter,
     PaginationContainer
