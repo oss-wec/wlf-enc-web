@@ -18,6 +18,7 @@
     "moment": "^2.18.1",
     "vue": "^2.2.6",
     "vue-moment": "^2.0.2",
+    "vue-router": "^2.5.3",
     "vuex": "^2.3.1"
   },
   "devDependencies": {
