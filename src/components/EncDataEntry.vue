@@ -55,10 +55,11 @@
 
           <!-- marks dynamic form -->
           <hr>
-          <div v-for="(mark, index) in animal.Marks">
-            <button type="button" class="close">
+          <div v-for="(mark, index) in animal.Marks" class="mark">
+            <button type="button" class="close" @click="deleteMark(index)">
               <span>&times;</span>
             </button>
+
             <div class="form-group">
               <label >Mark Type</label>
               <select class="form-control" v-model="mark.type">
@@ -158,6 +159,10 @@ export default {
         color: '',
         location: ''
       })
+    },
+
+    deleteMark (id) {
+      this.animal.Marks.splice(id, 1)
     }
   }
 }
