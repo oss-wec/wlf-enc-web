@@ -53,6 +53,38 @@
             <input class="form-control" type="text" v-model="animal.Encounters.comments">
           </div>
 
+          <!-- marks dynamic form -->
+          <hr>
+          <div v-for="(mark, index) in animal.Marks">
+            <button type="button" class="close">
+              <span>&times;</span>
+            </button>
+            <div class="form-group">
+              <label >Mark Type</label>
+              <select class="form-control" v-model="mark.type">
+                <option value=""></option>
+                <option value="Band">Band</option>
+                <option value="Collar">Collar</option>
+                <option value="Ear Tag">Ear Tag</option>
+                <option value="PIT Tag">PIT Tag</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Mark ID</label>
+              <input class="form-control" type="text" v-model="mark.id">
+            </div>
+            <div class="form-group">
+              <label>Mark Color</label>
+              <input class="form-control" type="text" v-model="mark.color">
+            </div>
+            <div class="form-group">
+              <label>Mark Location</label>
+              <input class="form-control" type="text" v-model="mark.location">
+            </div>
+          </div>
+
+          <button type="button" name="button" class="btn btn-primary" @click="addMark">Add Mark</button>
+
           <button type="button" name="button" v-on:click="submitAnimal">Submit Data</button>
 
         </div>
@@ -85,6 +117,12 @@ export default {
         animal_id: null,
         species_id: null, // TODO: select component
         sex: null, // TODO: select
+        Marks: [{
+          type: 'Ear Tag',
+          id: '1',
+          color: 'red',
+          location: 'ear'
+        }],
         Encounters: {
           status: null, // TODO: select
           age: null,
@@ -111,6 +149,15 @@ export default {
       axios.post('http://localhost:1313/events/test', this.animal)
       .then(res => console.log(res))
       .catch(err => console.log(err.response.data))
+    },
+
+    addMark () {
+      this.animal.Marks.push({
+        type: '',
+        id: '',
+        color: '',
+        location: ''
+      })
     }
   }
 }

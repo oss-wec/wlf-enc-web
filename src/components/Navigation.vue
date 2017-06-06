@@ -18,7 +18,8 @@
 
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fa fa-fw fa-bell"></i></a>
+          <router-link class="nav-link" to="/encounters/new"><i class="fa fa-fw fa-plus"></i></router-link>
+          <!-- <a class="nav-link" href="#"><i class="fa fa-fw fa-bell"></i></a> -->
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#"><i class="fa fa-fw fa-plus"></i></a>
