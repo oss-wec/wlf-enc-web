@@ -192,7 +192,7 @@
           Biometrics Module
         </h4>
         <div class="card-block" v-if="showBiometrics">
-          Biometrics
+          biometrics
         </div>
       </div>
       <!-- end biometrics -->
@@ -258,7 +258,7 @@
           Necropsy Module
         </h4>
         <div class="card-block" v-if="showNecropsy">
-          necropsy
+          <DataModules></DataModules>
         </div>
       </div>
       <!-- end necropsy -->
@@ -284,8 +284,13 @@
 
 <script>
 import axios from 'axios'
+import DataModules from './DataModules'
 
 export default {
+  components: {
+    DataModules
+  },
+
   data () {
     return {
       animal: {
@@ -309,6 +314,13 @@ export default {
           comments: null // TODO: textarea
         }
       },
+      devices: [{
+        type: 'GPS',
+        id: '1234',
+        freq: '111.111',
+        inservice: '2017-01-01',
+        outservice: '2017-01-01'
+      }],
       showMarks: false,
       showDevices: false,
       showBiometrics: false,
