@@ -114,9 +114,9 @@
 
       <!-- start marks data entry module -->
       <div class="card">
-        <div class="card-header" @click="toggleVisibility('showMarks')">
-          <h5>Marks Module</h5>
-        </div>
+        <h4 class="card-header" @click="toggleVisibility('showMarks')">
+          Marks Module
+        </h4>
         <div class="card-block" v-if="showMarks">
 
           <div class="p-card" v-for="(mark, index) in animal.Marks" v-bind:class="{ 'p-card-odd': oddIndex(index) }">
@@ -175,6 +175,94 @@
       </div>
       <!-- end marks data entry module -->
 
+      <!-- start devices data entry module -->
+      <div class="card">
+        <h4 class="card-header" @click="toggleVisibility('showDevices')">
+          Devices Module
+        </h4>
+        <div class="card-block" v-if="showDevices">
+          Devices stuff
+        </div>
+      </div>
+      <!-- end devices data entry module -->
+
+      <!-- biometrics -->
+      <div class="card">
+        <h4 class="card-header" @click="toggleVisibility('showBiometrics')">
+          Biometrics Module
+        </h4>
+        <div class="card-block" v-if="showBiometrics">
+          Biometrics
+        </div>
+      </div>
+      <!-- end biometrics -->
+
+      <!-- vitals -->
+      <div class="card">
+        <h4 class="card-header" @click="toggleVisibility('showVitals')">
+          Vitals Module
+        </h4>
+        <div class="card-block" v-if="showVitals">
+          vitals
+        </div>
+      </div>
+      <!-- end vitals -->
+
+      <!-- samples -->
+      <div class="card">
+        <h4 class="card-header" @click="toggleVisibility('showSamples')">
+          Samples Module
+        </h4>
+        <div class="card-block" v-if="showSamples">
+          samples
+        </div>
+      </div>
+      <!-- end samples -->
+
+      <!-- medications -->
+      <div class="card">
+        <h4 class="card-header" @click="toggleVisibility('showMeds')">
+          Medications Module
+        </h4>
+        <div class="card-block" v-if="showMeds">
+          medications
+        </div>
+      </div>
+      <!-- end medications -->
+
+      <!-- injury -->
+      <div class="card">
+        <h4 class="card-header" @click="toggleVisibility('showInjuries')">
+          Injuries Module
+        </h4>
+        <div class="card-block" v-if="showInjuries">
+          injuries
+        </div>
+      </div>
+      <!-- end injury -->
+
+      <!-- mortality -->
+      <div class="card">
+        <h4 class="card-header" @click="toggleVisibility('showMortalities')">
+          Mortalities Module
+        </h4>
+        <div class="card-block" v-if="showMortalities">
+          mortalities
+        </div>
+      </div>
+      <!-- end mortality -->
+
+      <!-- necropsy -->
+      <div class="card">
+        <h4 class="card-header" @click="toggleVisibility('showNecropsy')">
+          Necropsy Module
+        </h4>
+        <div class="card-block" v-if="showNecropsy">
+          necropsy
+        </div>
+      </div>
+      <!-- end necropsy -->
+
       <button type="button" name="button" v-on:click="submitAnimal">Submit Data</button>
     </form>
 
@@ -221,7 +309,15 @@ export default {
           comments: null // TODO: textarea
         }
       },
-      showMarks: false
+      showMarks: false,
+      showDevices: false,
+      showBiometrics: false,
+      showVitals: false,
+      showSamples: false,
+      showMeds: false,
+      showInjuries: false,
+      showMortalities: false,
+      showNecropsy: false
     }
   },
 
@@ -264,9 +360,8 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.mark-card {
-  background-color: #F7F7F9;
-  padding: 10px 0 10px 0;
+.card {
+  margin-bottom: 5px;
 }
 
 .p-card {
