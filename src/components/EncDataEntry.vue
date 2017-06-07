@@ -1,95 +1,181 @@
 <template lang="html">
   <div class="container">
-    <form class="" action="index.html" method="post">
-      <div class="row">
-        <div class="col-xs-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
-          <h1>Enter Wildlife Encounter</h1>
-          <hr>
-          <!-- element / animal section  -->
-          <div class="form-group">
-            <label>NDOW ID</label>
-            <input class="form-control" type="text" v-model="animal.animal_id">
-          </div>
-          <div class="form-group">
-            <label>Species</label>
-            <input class="form-control" type="text" v-model="animal.species_id">
-          </div>
-          <div class="form-group">
-            <label>Sex</label>
-            <input class="form-control" type="text" v-model="animal.sex">
-          </div>
 
-          <!-- event / encounter section -->
-          <div class="form-group">
-            <label>Status</label>
-            <input class="form-control" type="text" v-model="animal.Encounters.status">
-          </div>
-          <div class="form-group">
-            <label>Age</label>
-            <input class="form-control" type="text" v-model="animal.Encounters.age">
-          </div>
-          <div class="form-group">
-            <label>Date</label>
-            <input class="form-control" type="text" v-model="animal.Encounters.event_date">
-          </div>
-          <div class="form-group">
-            <label>X</label>
-            <input class="form-control" type="text" v-model="animal.Encounters.x">
-          </div>
-          <div class="form-group">
-            <label>Y</label>
-            <input class="form-control" type="text" v-model="animal.Encounters.y">
-          </div>
-          <div class="form-group">
-            <label>Encounter Method</label>
-            <input class="form-control" type="text" v-model="animal.Encounters.enc_method">
-          </div>
-          <div class="form-group">
-            <label>Encounter Reason</label>
-            <input class="form-control" type="text" v-model="animal.Encounters.enc_reason">
-          </div>
-          <div class="form-group">
-            <label>Comment</label>
-            <input class="form-control" type="text" v-model="animal.Encounters.comments">
-          </div>
+    <form>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">NDOW ID</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" v-model="animal.animal_id">
+        </div>
+        <div class="col-sm-4">
+          <p class="form-text text-muted"><small>enter the NDOW ID for this animal</small></p>
+        </div>
+      </div>
 
-          <!-- marks dynamic form -->
-          <hr>
-          <div v-for="(mark, index) in animal.Marks" class="mark">
-            <button type="button" class="close" @click="deleteMark(index)">
-              <span>&times;</span>
-            </button>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Species</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" v-model="animal.species_id">
+        </div>
+        <div class="col-sm-4">
+          <p class="form-text text-muted"><small>select a species from the dropdown</small></p>
+        </div>
+      </div>
 
-            <div class="form-group">
-              <label >Mark Type</label>
-              <select class="form-control" v-model="mark.type">
-                <option value=""></option>
-                <option value="Band">Band</option>
-                <option value="Collar">Collar</option>
-                <option value="Ear Tag">Ear Tag</option>
-                <option value="PIT Tag">PIT Tag</option>
-              </select>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Sex</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" v-model="animal.sex">
+        </div>
+        <div class="col-sm-4">
+          <p class="form-text text-muted"><small>select a sex from the dropdown</small></p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Status</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" v-model="animal.Encounters.status">
+        </div>
+        <div class="col-sm-4">
+          <p class="form-text text-muted"><small>select the life status of the animal</small></p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Age</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" v-model="animal.Encounters.age">
+        </div>
+        <div class="col-sm-4">
+          <p class="form-text text-muted"><small>select a categorical age from the dropdown</small></p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Date</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" v-model="animal.Encounters.event_date">
+        </div>
+        <div class="col-sm-4">
+          <p class="form-text text-muted"><small>select the date of the encounter</small></p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Encounter Method</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" v-model="animal.Encounters.enc_method">
+        </div>
+        <div class="col-sm-4">
+          <p class="form-text text-muted"><small>select the method used to observe the animal</small></p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Encounter Reason</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" v-model="animal.Encounters.enc_reason">
+        </div>
+        <div class="col-sm-4">
+          <p class="form-text text-muted"><small>select the reason for the encounter</small></p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Easting</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" v-model="animal.Encounters.x">
+        </div>
+        <div class="col-sm-4">
+          <p class="form-text text-muted"><small>the NAD83 Easting of the encounter</small></p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Northing</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" v-model="animal.Encounters.y">
+        </div>
+        <div class="col-sm-4">
+          <p class="form-text text-muted"><small>the NAD83 Northing of the encounter</small></p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Comments</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" v-model="animal.Encounters.comments">
+        </div>
+        <div class="col-sm-4">
+          <p class="form-text text-muted"><small>any miscellaneous notes pertaining to the encounter</small></p>
+        </div>
+      </div>
+
+      <!-- start marks data entry module -->
+      <div class="card">
+        <div class="card-header" @click="toggleVisibility('showMarks')">
+          Marks
+        </div>
+        <div class="card-block" v-if="showMarks">
+
+          <div class="card" v-for="(mark, index) in animal.Marks">
+            <div class="card-header">
+              <button type="button" class="close" @click="deleteMark(index)">
+                <span>&times;</span>
+              </button>
+
+              Mark {{ index + 1 }}
             </div>
-            <div class="form-group">
-              <label>Mark ID</label>
-              <input class="form-control" type="text" v-model="mark.id">
-            </div>
-            <div class="form-group">
-              <label>Mark Color</label>
-              <input class="form-control" type="text" v-model="mark.color">
-            </div>
-            <div class="form-group">
-              <label>Mark Location</label>
-              <input class="form-control" type="text" v-model="mark.location">
+            <div class="card-block">
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Mark Type</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" v-model="mark.type">
+                </div>
+                <div class="col-sm-4">
+                  <p class="form-text text-muted"><small>what type of mark was used</small></p>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Mark ID</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" v-model="mark.id">
+                </div>
+                <div class="col-sm-4">
+                  <p class="form-text text-muted"><small>what is the ID of the mark</small></p>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Mark Color</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" v-model="mark.color">
+                </div>
+                <div class="col-sm-4">
+                  <p class="form-text text-muted"><small>what color is the mark</small></p>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Mark Location</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" v-model="mark.location">
+                </div>
+                <div class="col-sm-4">
+                  <p class="form-text text-muted"><small>where was the mark applied</small></p>
+                </div>
+              </div>
             </div>
           </div>
 
           <button type="button" name="button" class="btn btn-primary" @click="addMark">Add Mark</button>
-
-          <button type="button" name="button" v-on:click="submitAnimal">Submit Data</button>
-
         </div>
       </div>
+      <!-- end marks data entry module -->
+
+      <button type="button" name="button" v-on:click="submitAnimal">Submit Data</button>
     </form>
 
     <hr>
@@ -134,7 +220,8 @@ export default {
           enc_reason: null, // TODO: select
           comments: null // TODO: textarea
         }
-      }
+      },
+      showMarks: false
     }
   },
 
@@ -150,6 +237,10 @@ export default {
       axios.post('http://localhost:1313/events/test', this.animal)
       .then(res => console.log(res))
       .catch(err => console.log(err.response.data))
+    },
+
+    toggleVisibility (toggle) {
+      this[toggle] = !this[toggle]
     },
 
     addMark () {
@@ -168,5 +259,9 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
+.mark-card {
+  background-color: grey;
+  padding: 10px 0 10px 0;
+}
 </style>
