@@ -115,19 +115,19 @@
       <!-- start marks data entry module -->
       <div class="card">
         <div class="card-header" @click="toggleVisibility('showMarks')">
-          Marks
+          <h5>Marks Module</h5>
         </div>
         <div class="card-block" v-if="showMarks">
 
-          <div class="card" v-for="(mark, index) in animal.Marks">
-            <div class="card-header">
+          <div class="p-card" v-for="(mark, index) in animal.Marks" v-bind:class="{ 'p-card-odd': oddIndex(index) }">
+            <div class="p-card-header">
               <button type="button" class="close" @click="deleteMark(index)">
                 <span>&times;</span>
               </button>
 
-              Mark {{ index + 1 }}
+              <h5>Mark {{ index + 1 }}</h5>
             </div>
-            <div class="card-block">
+            <div class="p-card-block">
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Mark Type</label>
                 <div class="col-sm-6">
@@ -183,7 +183,7 @@
       <div class="col-xs-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
         <div class="card">
           <div class="card-header">
-            <h4>The Data</h4>
+            <h4>Model</h4>
           </div>
           <div>
             <pre><code>{{ $data }}</code></pre>
@@ -254,6 +254,10 @@ export default {
 
     deleteMark (id) {
       this.animal.Marks.splice(id, 1)
+    },
+
+    oddIndex (index) {
+      return index % 2 !== 0
     }
   }
 }
@@ -261,7 +265,23 @@ export default {
 
 <style lang="css" scoped>
 .mark-card {
-  background-color: grey;
+  background-color: #F7F7F9;
   padding: 10px 0 10px 0;
+}
+
+.p-card {
+  padding: 5px 15px 0 15px;
+  border-radius: 5px;
+}
+
+.p-card-header {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  /*border-bottom: 1px solid lightgrey;*/
+  margin-bottom: 10px;
+}
+
+.p-card-odd {
+  background-color: #F7F7F9;
 }
 </style>
