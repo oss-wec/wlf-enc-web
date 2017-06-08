@@ -17,6 +17,7 @@
     "axios": "^0.16.1",
     "moment": "^2.18.1",
     "vue": "^2.2.6",
+    "vue-js-toggle-button": "^1.0.9",
     "vue-moment": "^2.0.2",
     "vue-router": "^2.5.3",
     "vuex": "^2.3.1"

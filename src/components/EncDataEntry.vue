@@ -2,7 +2,7 @@
   <div class="container">
 
     <form>
-      <!-- start encounter module -->
+      <!-- encounter -->
       <div class="card">
         <h4 class="card-header" @click="toggleVisibility('showEncounter')">Encounter Module</h4>
         <div class="card-block" v-if="showEncounter">
@@ -117,9 +117,17 @@
           </div>
         </div>
       </div>
-      <!-- end encounter module -->
+      <!-- end encounter -->
 
-      <!-- start marks data entry module -->
+      <legend>Supplemental Data</legend>
+      <hr>
+      <label>Marks</label>
+      <toggle-button :value="modules.marks"
+                     :labels="{checked: 'Yes', unchecked: 'No'}"
+                     :color="{checked: '#80C780', unchecked: '#D9534F'}"
+                     @change="toggleModule('marks')"/>
+
+      <!-- marks -->
       <div class="card">
         <h4 class="card-header" @click="toggleVisibility('showMarks')">
           Marks Module
@@ -200,9 +208,9 @@
           <button type="button" name="button" class="btn btn-primary" @click="addDynElement('marks')">Add Mark</button>
         </div>
       </div>
-      <!-- end marks data entry module -->
+      <!-- end marks -->
 
-      <!-- start devices data entry module -->
+      <!-- devices -->
       <div class="card">
         <h4 class="card-header" @click="toggleVisibility('showDevices')">
           Devices Module
@@ -273,7 +281,7 @@
           <button type="button" class="btn btn-primary" @click="addDynElement('devices')">Add Device</button>
         </div>
       </div>
-      <!-- end devices data entry module -->
+      <!-- end devices -->
 
       <!-- biometrics -->
       <div class="card">
@@ -831,6 +839,9 @@ export default {
           injury_description: null,
           injury_treatment: null
         }
+      },
+      modules: {
+        marks: false
       }
     }
   },
@@ -857,25 +868,16 @@ export default {
       this[el].push(this.emptyData[el])
     },
 
-    addMark () {
-      this.animal.Marks.push({
-        type: '',
-        id: '',
-        color: '',
-        location: ''
-      })
-    },
-
     deleteDynElement (el, index) {
       this[el].splice(index, 1)
     },
 
-    deleteMark (id) {
-      this.animal.Marks.splice(id, 1)
-    },
-
     oddIndex (index) {
       return index % 2 !== 0
+    },
+
+    toggleModule (module) {
+      this.modules[module] = !this.modules[module]
     }
   }
 }
