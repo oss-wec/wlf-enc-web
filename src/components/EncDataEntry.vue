@@ -2,115 +2,122 @@
   <div class="container">
 
     <form>
-      <div class="form-group row">
-        <label class="col-sm-2 col-form-label">NDOW ID</label>
-        <div class="col-sm-6">
-          <input type="text" class="form-control" v-model="animal.animal_id">
-        </div>
-        <div class="col-sm-4">
-          <p class="form-text text-muted"><small>enter the NDOW ID for this animal</small></p>
-        </div>
-      </div>
+      <!-- start encounter module -->
+      <div class="card">
+        <h4 class="card-header" @click="toggleVisibility('showEncounter')">Encounter Module</h4>
+        <div class="card-block" v-if="showEncounter">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">NDOW ID</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" v-model="animal.animal_id">
+            </div>
+            <div class="col-sm-4">
+              <p class="form-text text-muted"><small>enter the NDOW ID for this animal</small></p>
+            </div>
+          </div>
 
-      <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Species</label>
-        <div class="col-sm-6">
-          <input type="text" class="form-control" v-model="animal.species_id">
-        </div>
-        <div class="col-sm-4">
-          <p class="form-text text-muted"><small>select a species from the dropdown</small></p>
-        </div>
-      </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Species</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" v-model="animal.species_id">
+            </div>
+            <div class="col-sm-4">
+              <p class="form-text text-muted"><small>select a species from the dropdown</small></p>
+            </div>
+          </div>
 
-      <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Sex</label>
-        <div class="col-sm-6">
-          <input type="text" class="form-control" v-model="animal.sex">
-        </div>
-        <div class="col-sm-4">
-          <p class="form-text text-muted"><small>select a sex from the dropdown</small></p>
-        </div>
-      </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Sex</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" v-model="animal.sex">
+            </div>
+            <div class="col-sm-4">
+              <p class="form-text text-muted"><small>select a sex from the dropdown</small></p>
+            </div>
+          </div>
 
-      <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Status</label>
-        <div class="col-sm-6">
-          <input type="text" class="form-control" v-model="animal.Encounters.status">
-        </div>
-        <div class="col-sm-4">
-          <p class="form-text text-muted"><small>select the life status of the animal</small></p>
-        </div>
-      </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Status</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" v-model="animal.Encounters.status">
+            </div>
+            <div class="col-sm-4">
+              <p class="form-text text-muted"><small>select the life status of the animal</small></p>
+            </div>
+          </div>
 
-      <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Age</label>
-        <div class="col-sm-6">
-          <input type="text" class="form-control" v-model="animal.Encounters.age">
-        </div>
-        <div class="col-sm-4">
-          <p class="form-text text-muted"><small>select a categorical age from the dropdown</small></p>
-        </div>
-      </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Age</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" v-model="animal.Encounters.age">
+            </div>
+            <div class="col-sm-4">
+              <p class="form-text text-muted"><small>select a categorical age from the dropdown</small></p>
+            </div>
+          </div>
 
-      <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Date</label>
-        <div class="col-sm-6">
-          <input type="text" class="form-control" v-model="animal.Encounters.event_date">
-        </div>
-        <div class="col-sm-4">
-          <p class="form-text text-muted"><small>select the date of the encounter</small></p>
-        </div>
-      </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Date</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" v-model="animal.Encounters.event_date">
+            </div>
+            <div class="col-sm-4">
+              <p class="form-text text-muted"><small>select the date of the encounter</small></p>
+            </div>
+          </div>
 
-      <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Encounter Method</label>
-        <div class="col-sm-6">
-          <input type="text" class="form-control" v-model="animal.Encounters.enc_method">
-        </div>
-        <div class="col-sm-4">
-          <p class="form-text text-muted"><small>select the method used to observe the animal</small></p>
-        </div>
-      </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Encounter Method</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" v-model="animal.Encounters.enc_method">
+            </div>
+            <div class="col-sm-4">
+              <p class="form-text text-muted"><small>select the method used to observe the animal</small></p>
+            </div>
+          </div>
 
-      <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Encounter Reason</label>
-        <div class="col-sm-6">
-          <input type="text" class="form-control" v-model="animal.Encounters.enc_reason">
-        </div>
-        <div class="col-sm-4">
-          <p class="form-text text-muted"><small>select the reason for the encounter</small></p>
-        </div>
-      </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Encounter Reason</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" v-model="animal.Encounters.enc_reason">
+            </div>
+            <div class="col-sm-4">
+              <p class="form-text text-muted"><small>select the reason for the encounter</small></p>
+            </div>
+          </div>
 
-      <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Easting</label>
-        <div class="col-sm-6">
-          <input type="text" class="form-control" v-model="animal.Encounters.x">
-        </div>
-        <div class="col-sm-4">
-          <p class="form-text text-muted"><small>the NAD83 Easting of the encounter</small></p>
-        </div>
-      </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Easting</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" v-model="animal.Encounters.x">
+            </div>
+            <div class="col-sm-4">
+              <p class="form-text text-muted"><small>the NAD83 Easting of the encounter</small></p>
+            </div>
+          </div>
 
-      <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Northing</label>
-        <div class="col-sm-6">
-          <input type="text" class="form-control" v-model="animal.Encounters.y">
-        </div>
-        <div class="col-sm-4">
-          <p class="form-text text-muted"><small>the NAD83 Northing of the encounter</small></p>
-        </div>
-      </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Northing</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" v-model="animal.Encounters.y">
+            </div>
+            <div class="col-sm-4">
+              <p class="form-text text-muted"><small>the NAD83 Northing of the encounter</small></p>
+            </div>
+          </div>
 
-      <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Comments</label>
-        <div class="col-sm-6">
-          <input type="text" class="form-control" v-model="animal.Encounters.comments">
-        </div>
-        <div class="col-sm-4">
-          <p class="form-text text-muted"><small>any miscellaneous notes pertaining to the encounter</small></p>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Comments</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" v-model="animal.Encounters.comments">
+            </div>
+            <div class="col-sm-4">
+              <p class="form-text text-muted"><small>any miscellaneous notes pertaining to the encounter</small></p>
+            </div>
+          </div>
         </div>
       </div>
+      <!-- end encounter module -->
 
       <!-- start marks data entry module -->
       <div class="card">
@@ -766,6 +773,7 @@ export default {
         final_diagnoses: null,
         hist_diagnoses: null
       },
+      showEncounter: true,
       showMarks: false,
       showDevices: false,
       showBiometrics: false,
