@@ -4,8 +4,8 @@
     <form>
       <!-- encounter -->
       <div class="card">
-        <h4 class="card-header" @click="toggleVisibility('showEncounter')">Encounter Module</h4>
-        <div class="card-block" v-if="showEncounter">
+        <h4 class="card-header" @click="toggleVisibility('encounter')">Encounter Module</h4>
+        <div class="card-block" v-if="modules.encounter.show">
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">NDOW ID</label>
             <div class="col-sm-6">
@@ -39,7 +39,7 @@
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Status</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" v-model="animal.Encounters.status">
+              <input type="text" class="form-control" v-model="encounter.status">
             </div>
             <div class="col-sm-4">
               <p class="form-text text-muted"><small>select the life status of the animal</small></p>
@@ -49,7 +49,7 @@
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Age</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" v-model="animal.Encounters.age">
+              <input type="text" class="form-control" v-model="encounter.age">
             </div>
             <div class="col-sm-4">
               <p class="form-text text-muted"><small>select a categorical age from the dropdown</small></p>
@@ -59,7 +59,7 @@
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Date</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" v-model="animal.Encounters.event_date">
+              <input type="text" class="form-control" v-model="encounter.event_date">
             </div>
             <div class="col-sm-4">
               <p class="form-text text-muted"><small>select the date of the encounter</small></p>
@@ -69,7 +69,7 @@
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Encounter Method</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" v-model="animal.Encounters.enc_method">
+              <input type="text" class="form-control" v-model="encounter.enc_method">
             </div>
             <div class="col-sm-4">
               <p class="form-text text-muted"><small>select the method used to observe the animal</small></p>
@@ -79,7 +79,7 @@
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Encounter Reason</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" v-model="animal.Encounters.enc_reason">
+              <input type="text" class="form-control" v-model="encounter.enc_reason">
             </div>
             <div class="col-sm-4">
               <p class="form-text text-muted"><small>select the reason for the encounter</small></p>
@@ -89,7 +89,7 @@
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Easting</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" v-model="animal.Encounters.x">
+              <input type="text" class="form-control" v-model="encounter.x">
             </div>
             <div class="col-sm-4">
               <p class="form-text text-muted"><small>the NAD83 Easting of the encounter</small></p>
@@ -99,7 +99,7 @@
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Northing</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" v-model="animal.Encounters.y">
+              <input type="text" class="form-control" v-model="encounter.y">
             </div>
             <div class="col-sm-4">
               <p class="form-text text-muted"><small>the NAD83 Northing of the encounter</small></p>
@@ -109,10 +109,10 @@
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Comments</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" v-model="animal.Encounters.comments">
+              <input type="text" class="form-control" v-model="encounter.comments">
             </div>
             <div class="col-sm-4">
-              <p class="form-text text-muted"><small>any miscellaneous notes pertaining to the encounter</small></p>
+              <p class="form-text text-muted"><small>any miscellaneous notes for the encounter</small></p>
             </div>
           </div>
         </div>
@@ -122,6 +122,7 @@
       <legend>Supplemental Data</legend>
       <hr>
 
+      <!-- supplemental switches -->
       <div class="row container">
         <div class="form-group col-sm-3" v-for="(module, index) in modules">
           <label class="d-block"><strong>{{ sentenceCase(module.name) }}</strong></label>
@@ -135,10 +136,10 @@
 
       <!-- marks -->
       <div class="card" v-if="modules.marks.value">
-        <h4 class="card-header" @click="toggleVisibility('showMarks')">
+        <h4 class="card-header" @click="toggleVisibility('marks')">
           Marks Module
         </h4>
-        <div class="card-block" v-if="showMarks">
+        <div class="card-block" v-if="modules.marks.show">
 
           <div class="p-card" v-for="(mark, index) in marks" v-bind:class="{ 'p-card-odd': oddIndex(index) }">
             <div class="p-card-header">
@@ -218,10 +219,10 @@
 
       <!-- devices -->
       <div class="card"  v-if="modules.devices.value">
-        <h4 class="card-header" @click="toggleVisibility('showDevices')">
+        <h4 class="card-header" @click="toggleVisibility('devices')">
           Devices Module
         </h4>
-        <div class="card-block" v-if="showDevices">
+        <div class="card-block" v-if="modules.devices.show">
           <div class="p-card" v-for="(device, index) in devices" :class="{ 'p-card-odd': oddIndex(index) }">
 
             <div class="p-card-header">
@@ -291,10 +292,10 @@
 
       <!-- biometrics -->
       <div class="card" v-if="modules.biometrics.value">
-        <h4 class="card-header" @click="toggleVisibility('showBiometrics')">
+        <h4 class="card-header" @click="toggleVisibility('biometrics')">
           Biometrics Module
         </h4>
-        <div class="card-block" v-if="showBiometrics">
+        <div class="card-block" v-if="modules.biometrics.show">
           <div class="p-card" v-for="(biometric, index) in biometrics" v-bind:class="{ 'p-card-odd': oddIndex(index) }">
             <div class="p-card-header">
               <button type="button" class="close" @click="deleteDynElement('biometrics', index)">
@@ -353,10 +354,10 @@
 
       <!-- vitals -->
       <div class="card" v-if="modules.vitals.value">
-        <h4 class="card-header" @click="toggleVisibility('showVitals')">
+        <h4 class="card-header" @click="toggleVisibility('vitals')">
           Vitals Module
         </h4>
-        <div class="card-block" v-if="showVitals">
+        <div class="card-block" v-if="modules.vitals.show">
           <div class="p-card" v-for="(vital, index) in vitals" v-bind:class="{ 'p-card-odd': oddIndex(index) }">
             <div class="p-card-header">
               <button type="button" class="close" @click="deleteDynElement('vitals', index)">
@@ -425,10 +426,10 @@
 
       <!-- samples -->
       <div class="card" v-if="modules.samples.value">
-        <h4 class="card-header" @click="toggleVisibility('showSamples')">
+        <h4 class="card-header" @click="toggleVisibility('samples')">
           Samples Module
         </h4>
-        <div class="card-block" v-if="showSamples">
+        <div class="card-block" v-if="modules.samples.show">
           <div class="p-card" v-for="(sample, index) in samples" v-bind:class="{ 'p-card-odd': oddIndex(index) }">
             <div class="p-card-header">
               <button type="button" class="close" @click="deleteDynElement('samples', index)">
@@ -477,10 +478,10 @@
 
       <!-- medications -->
       <div class="card" v-if="modules.medications.value">
-        <h4 class="card-header" @click="toggleVisibility('showMeds')">
+        <h4 class="card-header" @click="toggleVisibility('medications')">
           Medications Module
         </h4>
-        <div class="card-block" v-if="showMeds">
+        <div class="card-block" v-if="modules.medications.show">
           <div class="p-card" v-for="(med, index) in medications" v-bind:class="{ 'p-card-odd': oddIndex(index) }">
             <div class="p-card-header">
               <button type="button" class="close" @click="deleteDynElement('medications', index)">
@@ -559,10 +560,10 @@
 
       <!-- injury -->
       <div class="card"  v-if="modules.injuries.value">
-        <h4 class="card-header" @click="toggleVisibility('showInjuries')">
+        <h4 class="card-header" @click="toggleVisibility('injuries')">
           Injuries Module
         </h4>
-        <div class="card-block" v-if="showInjuries">
+        <div class="card-block" v-if="modules.injuries.show">
           <div class="p-card" v-for="(injury, index) in injuries" v-bind:class="{ 'p-card-odd': oddIndex(index) }">
             <div class="p-card-header">
               <button type="button" class="close" @click="deleteDynElement('injuries', index)">
@@ -621,10 +622,10 @@
 
       <!-- mortality -->
       <div class="card" v-if="modules.mortality.value">
-        <h4 class="card-header" @click="toggleVisibility('showMortalities')">
+        <h4 class="card-header" @click="toggleVisibility('mortality')">
           Mortalities Module
         </h4>
-        <div class="card-block" v-if="showMortalities">
+        <div class="card-block" v-if="modules.mortality.show">
           <div class="p-card">
             <div class="p-card-block">
               <div class="form-group row">
@@ -684,10 +685,10 @@
 
       <!-- necropsy -->
       <div class="card" v-if="modules.necropsy.value">
-        <h4 class="card-header" @click="toggleVisibility('showNecropsy')">
+        <h4 class="card-header" @click="toggleVisibility('necropsy')">
           Necropsy Module
         </h4>
-        <div class="card-block" v-if="showNecropsy">
+        <div class="card-block" v-if="modules.necropsy.show">
           necropsies
         </div>
       </div>
@@ -722,17 +723,17 @@ export default {
       animal: {
         animal_id: null,
         species_id: null, // TODO: select component
-        sex: null, // TODO: select
-        Encounters: {
-          status: null, // TODO: select
-          age: null,
-          event_date: null, // TODO: calander
-          x: null,
-          y: null,
-          enc_method: null, // TODO: select
-          enc_reason: null, // TODO: select
-          comments: null // TODO: textarea
-        }
+        sex: null // TODO: select
+      },
+      encounter: {
+        status: null,
+        age: null,
+        event_date: null,
+        x: null,
+        y: null,
+        enc_method: null,
+        enc_reason: null,
+        comments: null
       },
       marks: [{
         mark_type: null,
@@ -788,16 +789,6 @@ export default {
         final_diagnoses: null,
         hist_diagnoses: null
       },
-      showEncounter: true,
-      showMarks: false,
-      showDevices: false,
-      showBiometrics: false,
-      showVitals: false,
-      showSamples: false,
-      showMeds: false,
-      showInjuries: false,
-      showMortalities: false,
-      showNecropsy: false,
       emptyData: {
         marks: {
           mark_type: null,
@@ -848,41 +839,65 @@ export default {
         }
       },
       modules: {
+        animal: {
+          name: 'animal'
+        },
+        encounter: {
+          name: 'encounter',
+          show: true
+        },
         marks: {
           name: 'marks',
-          value: false
+          value: false,
+          show: false,
+          model: [{
+            mark_type: null,
+            mark_id: null,
+            mark_color: null,
+            mark_location: null,
+            date_given: null,
+            date_removed: null
+          }]
         },
         devices: {
           name: 'devices',
-          value: false
+          value: false,
+          show: false
         },
         biometrics: {
           name: 'biometrics',
-          value: false
+          value: false,
+          show: false
         },
         vitals: {
           name: 'vitals',
-          value: false
+          value: false,
+          show: false
         },
         samples: {
           name: 'samples',
-          value: false
+          value: false,
+          show: false
         },
         medications: {
           name: 'medications',
-          value: false
+          value: false,
+          show: false
         },
         injuries: {
           name: 'injuries',
-          value: false
+          value: false,
+          show: false
         },
         mortality: {
           name: 'mortality',
-          value: false
+          value: false,
+          show: false
         },
         necropsy: {
           name: 'necropsy',
-          value: false
+          value: false,
+          show: false
         }
       }
     }
@@ -903,11 +918,11 @@ export default {
     },
 
     toggleVisibility (toggle) {
-      this[toggle] = !this[toggle]
+      this.modules[toggle].show = !this.modules[toggle].show
     },
 
     addDynElement (el) {
-      this[el].push(this.emptyData[el])
+      this[el].push(this.emptyModel(el))
     },
 
     deleteDynElement (el, index) {
@@ -924,6 +939,15 @@ export default {
 
     sentenceCase (string) {
       return sentenceCase(string)
+    },
+
+    emptyModel (model) {
+      const obj = this.modules[model].model[0]
+      console.log(obj)
+      for (let k in obj) {
+        obj[k] = null
+      }
+      return obj
     }
   }
 }
