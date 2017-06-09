@@ -121,14 +121,20 @@
 
       <legend>Supplemental Data</legend>
       <hr>
-      <label>Marks</label>
-      <toggle-button :value="modules.marks"
-                     :labels="{checked: 'Yes', unchecked: 'No'}"
-                     :color="{checked: '#80C780', unchecked: '#D9534F'}"
-                     @change="toggleModule('marks')"/>
+
+      <div class="row container">
+        <div class="form-group col-sm-3" v-for="(module, index) in modules">
+          <label class="d-block"><strong>{{ sentenceCase(module.name) }}</strong></label>
+          <toggle-button :value="module.value"
+                         :width="75"
+                         :labels="{checked: 'Yes', unchecked: 'No'}"
+                         :color="{checked: '#80C780', unchecked: '#D9534F'}"
+                         @change="toggleModule(module.name)"/>
+        </div>
+      </div>
 
       <!-- marks -->
-      <div class="card">
+      <div class="card" v-if="modules.marks.value">
         <h4 class="card-header" @click="toggleVisibility('showMarks')">
           Marks Module
         </h4>
@@ -211,7 +217,7 @@
       <!-- end marks -->
 
       <!-- devices -->
-      <div class="card">
+      <div class="card"  v-if="modules.devices.value">
         <h4 class="card-header" @click="toggleVisibility('showDevices')">
           Devices Module
         </h4>
@@ -284,7 +290,7 @@
       <!-- end devices -->
 
       <!-- biometrics -->
-      <div class="card">
+      <div class="card" v-if="modules.biometrics.value">
         <h4 class="card-header" @click="toggleVisibility('showBiometrics')">
           Biometrics Module
         </h4>
@@ -346,7 +352,7 @@
       <!-- end biometrics -->
 
       <!-- vitals -->
-      <div class="card">
+      <div class="card" v-if="modules.vitals.value">
         <h4 class="card-header" @click="toggleVisibility('showVitals')">
           Vitals Module
         </h4>
@@ -418,7 +424,7 @@
       <!-- end vitals -->
 
       <!-- samples -->
-      <div class="card">
+      <div class="card" v-if="modules.samples.value">
         <h4 class="card-header" @click="toggleVisibility('showSamples')">
           Samples Module
         </h4>
@@ -470,7 +476,7 @@
       <!-- end samples -->
 
       <!-- medications -->
-      <div class="card">
+      <div class="card" v-if="modules.medications.value">
         <h4 class="card-header" @click="toggleVisibility('showMeds')">
           Medications Module
         </h4>
@@ -552,7 +558,7 @@
       <!-- end medications -->
 
       <!-- injury -->
-      <div class="card">
+      <div class="card"  v-if="modules.injuries.value">
         <h4 class="card-header" @click="toggleVisibility('showInjuries')">
           Injuries Module
         </h4>
@@ -614,7 +620,7 @@
       <!-- end injury -->
 
       <!-- mortality -->
-      <div class="card">
+      <div class="card" v-if="modules.mortality.value">
         <h4 class="card-header" @click="toggleVisibility('showMortalities')">
           Mortalities Module
         </h4>
@@ -677,7 +683,7 @@
       <!-- end mortality -->
 
       <!-- necropsy -->
-      <div class="card">
+      <div class="card" v-if="modules.necropsy.value">
         <h4 class="card-header" @click="toggleVisibility('showNecropsy')">
           Necropsy Module
         </h4>
@@ -708,6 +714,7 @@
 
 <script>
 import axios from 'axios'
+import { sentenceCase } from '../utils/utils'
 
 export default {
   data () {
@@ -841,7 +848,42 @@ export default {
         }
       },
       modules: {
-        marks: false
+        marks: {
+          name: 'marks',
+          value: false
+        },
+        devices: {
+          name: 'devices',
+          value: false
+        },
+        biometrics: {
+          name: 'biometrics',
+          value: false
+        },
+        vitals: {
+          name: 'vitals',
+          value: false
+        },
+        samples: {
+          name: 'samples',
+          value: false
+        },
+        medications: {
+          name: 'medications',
+          value: false
+        },
+        injuries: {
+          name: 'injuries',
+          value: false
+        },
+        mortality: {
+          name: 'mortality',
+          value: false
+        },
+        necropsy: {
+          name: 'necropsy',
+          value: false
+        }
       }
     }
   },
@@ -877,7 +919,11 @@ export default {
     },
 
     toggleModule (module) {
-      this.modules[module] = !this.modules[module]
+      this.modules[module].value = !this.modules[module].value
+    },
+
+    sentenceCase (string) {
+      return sentenceCase(string)
     }
   }
 }
