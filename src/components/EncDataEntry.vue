@@ -9,7 +9,7 @@
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">NDOW ID</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" v-model="animal.animal_id">
+              <input type="text" class="form-control" v-model="modules.animal.model.animal_id">
             </div>
             <div class="col-sm-4">
               <p class="form-text text-muted"><small>enter the NDOW ID for this animal</small></p>
@@ -19,7 +19,7 @@
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Species</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" v-model="animal.species_id">
+              <input type="text" class="form-control" v-model="modules.animal.model.species_id">
             </div>
             <div class="col-sm-4">
               <p class="form-text text-muted"><small>select a species from the dropdown</small></p>
@@ -29,7 +29,7 @@
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Sex</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" v-model="animal.sex">
+              <input type="text" class="form-control" v-model="modules.animal.model.sex">
             </div>
             <div class="col-sm-4">
               <p class="form-text text-muted"><small>select a sex from the dropdown</small></p>
@@ -39,7 +39,7 @@
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Status</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" v-model="encounter.status">
+              <input type="text" class="form-control" v-model="modules.encounter.model.status">
             </div>
             <div class="col-sm-4">
               <p class="form-text text-muted"><small>select the life status of the animal</small></p>
@@ -49,7 +49,7 @@
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Age</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" v-model="encounter.age">
+              <input type="text" class="form-control" v-model="modules.encounter.model.age">
             </div>
             <div class="col-sm-4">
               <p class="form-text text-muted"><small>select a categorical age from the dropdown</small></p>
@@ -59,7 +59,7 @@
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Date</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" v-model="encounter.event_date">
+              <input type="text" class="form-control" v-model="modules.encounter.model.event_date">
             </div>
             <div class="col-sm-4">
               <p class="form-text text-muted"><small>select the date of the encounter</small></p>
@@ -69,7 +69,7 @@
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Encounter Method</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" v-model="encounter.enc_method">
+              <input type="text" class="form-control" v-model="modules.encounter.model.enc_method">
             </div>
             <div class="col-sm-4">
               <p class="form-text text-muted"><small>select the method used to observe the animal</small></p>
@@ -79,7 +79,7 @@
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Encounter Reason</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" v-model="encounter.enc_reason">
+              <input type="text" class="form-control" v-model="modules.encounter.model.enc_reason">
             </div>
             <div class="col-sm-4">
               <p class="form-text text-muted"><small>select the reason for the encounter</small></p>
@@ -89,7 +89,7 @@
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Easting</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" v-model="encounter.x">
+              <input type="text" class="form-control" v-model="modules.encounter.model.x">
             </div>
             <div class="col-sm-4">
               <p class="form-text text-muted"><small>the NAD83 Easting of the encounter</small></p>
@@ -99,7 +99,7 @@
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Northing</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" v-model="encounter.y">
+              <input type="text" class="form-control" v-model="modules.encounter.model.y">
             </div>
             <div class="col-sm-4">
               <p class="form-text text-muted"><small>the NAD83 Northing of the encounter</small></p>
@@ -109,7 +109,7 @@
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Comments</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" v-model="encounter.comments">
+              <input type="text" class="form-control" v-model="modules.encounter.model.comments">
             </div>
             <div class="col-sm-4">
               <p class="form-text text-muted"><small>any miscellaneous notes for the encounter</small></p>
@@ -141,7 +141,7 @@
         </h4>
         <div class="card-block" v-if="modules.marks.show">
 
-          <div class="p-card" v-for="(mark, index) in marks" v-bind:class="{ 'p-card-odd': oddIndex(index) }">
+          <div class="p-card" v-for="(mark, index) in modules.marks.model" v-bind:class="{ 'p-card-odd': oddIndex(index) }">
             <div class="p-card-header">
               <button type="button" class="close" @click="deleteDynElement('marks', index)">
                 <span>&times;</span>
@@ -223,7 +223,7 @@
           Devices Module
         </h4>
         <div class="card-block" v-if="modules.devices.show">
-          <div class="p-card" v-for="(device, index) in devices" :class="{ 'p-card-odd': oddIndex(index) }">
+          <div class="p-card" v-for="(device, index) in modules.devices.model" :class="{ 'p-card-odd': oddIndex(index) }">
 
             <div class="p-card-header">
               <button type="button" class="close" @click="deleteDynElement('devices', index)">
@@ -296,7 +296,7 @@
           Biometrics Module
         </h4>
         <div class="card-block" v-if="modules.biometrics.show">
-          <div class="p-card" v-for="(biometric, index) in biometrics" v-bind:class="{ 'p-card-odd': oddIndex(index) }">
+          <div class="p-card" v-for="(biometric, index) in modules.biometrics.model" v-bind:class="{ 'p-card-odd': oddIndex(index) }">
             <div class="p-card-header">
               <button type="button" class="close" @click="deleteDynElement('biometrics', index)">
                 <span>&times;</span>
@@ -358,7 +358,7 @@
           Vitals Module
         </h4>
         <div class="card-block" v-if="modules.vitals.show">
-          <div class="p-card" v-for="(vital, index) in vitals" v-bind:class="{ 'p-card-odd': oddIndex(index) }">
+          <div class="p-card" v-for="(vital, index) in modules.vitals.model" v-bind:class="{ 'p-card-odd': oddIndex(index) }">
             <div class="p-card-header">
               <button type="button" class="close" @click="deleteDynElement('vitals', index)">
                 <span>&times;</span>
@@ -430,7 +430,7 @@
           Samples Module
         </h4>
         <div class="card-block" v-if="modules.samples.show">
-          <div class="p-card" v-for="(sample, index) in samples" v-bind:class="{ 'p-card-odd': oddIndex(index) }">
+          <div class="p-card" v-for="(sample, index) in modules.samples.model" v-bind:class="{ 'p-card-odd': oddIndex(index) }">
             <div class="p-card-header">
               <button type="button" class="close" @click="deleteDynElement('samples', index)">
                 <span>&times;</span>
@@ -482,7 +482,7 @@
           Medications Module
         </h4>
         <div class="card-block" v-if="modules.medications.show">
-          <div class="p-card" v-for="(med, index) in medications" v-bind:class="{ 'p-card-odd': oddIndex(index) }">
+          <div class="p-card" v-for="(med, index) in modules.medications.model" v-bind:class="{ 'p-card-odd': oddIndex(index) }">
             <div class="p-card-header">
               <button type="button" class="close" @click="deleteDynElement('medications', index)">
                 <span>&times;</span>
@@ -564,7 +564,7 @@
           Injuries Module
         </h4>
         <div class="card-block" v-if="modules.injuries.show">
-          <div class="p-card" v-for="(injury, index) in injuries" v-bind:class="{ 'p-card-odd': oddIndex(index) }">
+          <div class="p-card" v-for="(injury, index) in modules.injuries.model" v-bind:class="{ 'p-card-odd': oddIndex(index) }">
             <div class="p-card-header">
               <button type="button" class="close" @click="deleteDynElement('injuries', index)">
                 <span>&times;</span>
@@ -631,7 +631,7 @@
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Cause of Death</label>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" v-model="mortality.cause_of_death">
+                  <input type="text" class="form-control" v-model="modules.mortality.model.cause_of_death">
                 </div>
                 <div class="col-sm-4">
                   <p class="form-text text-muted"><small>what is the cause of death</small></p>
@@ -641,7 +641,7 @@
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Carcass Age</label>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" v-model="mortality.carcass_age">
+                  <input type="text" class="form-control" v-model="modules.mortality.model.carcass_age">
                 </div>
                 <div class="col-sm-4">
                   <p class="form-text text-muted"><small>days since the animal died</small></p>
@@ -651,7 +651,7 @@
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Femur Index</label>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" v-model="mortality.femur_index">
+                  <input type="text" class="form-control" v-model="modules.mortality.model.femur_index">
                 </div>
                 <div class="col-sm-4">
                   <p class="form-text text-muted"><small>what is the femur index</small></p>
@@ -661,7 +661,7 @@
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Diagnoses</label>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" v-model="mortality.final_diagnoses">
+                  <input type="text" class="form-control" v-model="modules.mortality.model.final_diagnoses">
                 </div>
                 <div class="col-sm-4">
                   <p class="form-text text-muted"><small>the preliminary diagnoses for death</small></p>
@@ -671,7 +671,7 @@
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Histological Diagnoses</label>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" v-model="mortality.hist_diagnoses">
+                  <input type="text" class="form-control" v-model="modules.mortality.model.hist_diagnoses">
                 </div>
                 <div class="col-sm-4">
                   <p class="form-text text-muted"><small>histological diagnoses from lab</small></p>
@@ -720,131 +720,28 @@ import { sentenceCase } from '../utils/utils'
 export default {
   data () {
     return {
-      animal: {
-        animal_id: null,
-        species_id: null, // TODO: select component
-        sex: null // TODO: select
-      },
-      encounter: {
-        status: null,
-        age: null,
-        event_date: null,
-        x: null,
-        y: null,
-        enc_method: null,
-        enc_reason: null,
-        comments: null
-      },
-      marks: [{
-        mark_type: null,
-        mark_id: null,
-        mark_color: null,
-        mark_location: null,
-        date_given: null,
-        date_removed: null
-      }],
-      devices: [{
-        type: 'GPS',
-        serial_num: '1234',
-        frequency: '111.111',
-        inservice: '2017-01-01',
-        outservice: '2017-01-01'
-      }],
-      biometrics: [{
-        measurement: null,
-        value: null,
-        units: null,
-        notes: null
-      }],
-      vitals: [{
-        time_rec: null,
-        measurement: null,
-        value: null,
-        interval: null,
-        notes: null
-      }],
-      samples: [{
-        sample: null,
-        destination: null,
-        notes: null
-      }],
-      medications: [{
-        medication: null,
-        med_time: null,
-        med_dose: null,
-        med_unit: null,
-        med_method: null,
-        med_notes: null
-      }],
-      injuries: [{
-        injury_type: null,
-        injury_location: null,
-        injury_description: null,
-        injury_treatment: null
-      }],
-      mortality: {
-        cause_of_death: null,
-        carcass_age: null,
-        femur_index: null,
-        final_diagnoses: null,
-        hist_diagnoses: null
-      },
-      emptyData: {
-        marks: {
-          mark_type: null,
-          mark_id: null,
-          mark_color: null,
-          mark_location: null,
-          date_given: null,
-          date_removed: null
-        },
-        devices: {
-          serial_num: null,
-          frequency: null,
-          type: null,
-          inservice: null,
-          outservice: null
-        },
-        biometrics: {
-          measurement: null,
-          value: null,
-          units: null,
-          notes: null
-        },
-        vitals: {
-          time_rec: null,
-          measurement: null,
-          value: null,
-          interval: null,
-          notes: null
-        },
-        samples: {
-          sample: null,
-          destination: null,
-          notes: null
-        },
-        medications: {
-          medication: null,
-          med_time: null,
-          med_dose: null,
-          med_unit: null,
-          med_method: null,
-          med_notes: null
-        },
-        injuries: {
-          injury_type: null,
-          injury_location: null,
-          injury_description: null,
-          injury_treatment: null
-        }
-      },
       modules: {
         animal: {
-          name: 'animal'
+          name: 'animal',
+          model: {
+            animal_id: null,
+            species_id: null, // TODO: select component
+            sex: null // TODO: select
+          }
         },
         encounter: {
           name: 'encounter',
-          show: true
+          show: true,
+          model: {
+            status: null,
+            age: null,
+            event_date: null,
+            x: null,
+            y: null,
+            enc_method: null,
+            enc_reason: null,
+            comments: null
+          }
         },
         marks: {
           name: 'marks',
@@ -862,53 +759,100 @@ export default {
         devices: {
           name: 'devices',
           value: false,
-          show: false
+          show: false,
+          model: [{
+            type: null,
+            serial_num: null,
+            frequency: null,
+            inservice: null,
+            outservice: null
+          }]
         },
         biometrics: {
           name: 'biometrics',
           value: false,
-          show: false
+          show: false,
+          model: [{
+            measurement: null,
+            value: null,
+            units: null,
+            notes: null
+          }]
         },
         vitals: {
           name: 'vitals',
           value: false,
-          show: false
+          show: false,
+          model: [{
+            time_rec: null,
+            measurement: null,
+            value: null,
+            interval: null,
+            notes: null
+          }]
         },
         samples: {
           name: 'samples',
           value: false,
-          show: false
+          show: false,
+          model: [{
+            sample: null,
+            destination: null,
+            notes: null
+          }]
         },
         medications: {
           name: 'medications',
           value: false,
-          show: false
+          show: false,
+          model: [{
+            medication: null,
+            med_time: null,
+            med_dose: null,
+            med_unit: null,
+            med_method: null,
+            med_notes: null
+          }]
         },
         injuries: {
           name: 'injuries',
           value: false,
-          show: false
+          show: false,
+          model: [{
+            injury_type: null,
+            injury_location: null,
+            injury_description: null,
+            injury_treatment: null
+          }]
         },
         mortality: {
           name: 'mortality',
           value: false,
-          show: false
+          show: false,
+          model: {
+            cause_of_death: null,
+            carcass_age: null,
+            femur_index: null,
+            final_diagnoses: null,
+            hist_diagnoses: null
+          }
         },
         necropsy: {
           name: 'necropsy',
           value: false,
-          show: false
+          show: false,
+          model: {}
         }
       }
     }
   },
 
   methods: {
-    jsonData: function (data) {
+    jsonData (data) {
       return JSON.stringify(data, true, 2)
     },
 
-    submitAnimal: function () {
+    submitAnimal () {
       const animal = JSON.stringify(this.animal)
       console.log(animal)
 
@@ -922,7 +866,7 @@ export default {
     },
 
     addDynElement (el) {
-      this[el].push(this.emptyModel(el))
+      this.modules[el].model.push(this.emptyModel(el))
     },
 
     deleteDynElement (el, index) {
@@ -942,7 +886,7 @@ export default {
     },
 
     emptyModel (model) {
-      const obj = this.modules[model].model[0]
+      const obj = Object.assign({}, this.modules[model].model[0])
       console.log(obj)
       for (let k in obj) {
         obj[k] = null
