@@ -574,12 +574,12 @@
 
             <div class="p-card-block">
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Type</label>
+                <label class="col-sm-2 col-form-label">Side</label>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" v-model="injury.injury_type">
+                  <input type="text" class="form-control" v-model="injury.injury_side">
                 </div>
                 <div class="col-sm-4">
-                  <p class="form-text text-muted"><small>select the type of injury</small></p>
+                  <p class="form-text text-muted"><small>on which side of the body is the injury</small></p>
                 </div>
               </div>
 
@@ -590,6 +590,16 @@
                 </div>
                 <div class="col-sm-4">
                   <p class="form-text text-muted"><small>where was the injury</small></p>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Type</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" v-model="injury.injury_type">
+                </div>
+                <div class="col-sm-4">
+                  <p class="form-text text-muted"><small>select the type of injury</small></p>
                 </div>
               </div>
 
@@ -706,6 +716,8 @@
           </div>
           <div>
             <pre><code>{{ $data }}</code></pre>
+            <hr>
+            <pre><code>{{ structure }}</code></pre>
           </div>
         </div>
       </div>
@@ -723,6 +735,7 @@ export default {
       modules: {
         animal: {
           name: 'animal',
+          value: true,
           model: {
             animal_id: null,
             species_id: null, // TODO: select component
@@ -731,6 +744,7 @@ export default {
         },
         encounter: {
           name: 'encounter',
+          value: true,
           show: true,
           model: {
             status: null,
@@ -819,6 +833,7 @@ export default {
           value: false,
           show: false,
           model: [{
+            injury_side: null,
             injury_type: null,
             injury_location: null,
             injury_description: null,
@@ -853,10 +868,9 @@ export default {
     },
 
     submitAnimal () {
-      const animal = JSON.stringify(this.animal)
-      console.log(animal)
+      // const animal = JSON.stringify(this.structure)
 
-      axios.post('http://localhost:1313/events/test', this.animal)
+      axios.post('http://localhost:1313/events/test', this.structure)
       .then(res => console.log(res))
       .catch(err => console.log(err.response.data))
     },
@@ -870,7 +884,7 @@ export default {
     },
 
     deleteDynElement (el, index) {
-      this[el].splice(index, 1)
+      this.modules[el].model.splice(index, 1)
     },
 
     oddIndex (index) {
@@ -892,6 +906,38 @@ export default {
         obj[k] = null
       }
       return obj
+    }
+  },
+
+  computed: {
+    structure () {
+      const animal = this.modules.animal.model
+      const encounter = this.modules.encounter.model
+      const structure = {
+        animal_id: animal.animal_id,
+        species_id: animal.species_id,
+        sex: animal.sex,
+        Encounters: {
+          status: encounter.status,
+          age: encounter.age,
+          event_date: encounter.event_date,
+          x: encounter.x,
+          y: encounter.y,
+          enc_method: encounter.enc_method,
+          enc_reason: encounter.reason,
+          comments: encounter.comments
+        }
+      }
+
+      if (this.modules.marks.value === true) structure.Marks = this.modules.marks.model
+      if (this.modules.devices.value === true) structure.Devices = this.modules.devices.model
+      if (this.modules.biometrics.value === true) structure.Encounters.Biometrics = this.modules.biometrics.model
+      if (this.modules.vitals.value === true) structure.Encounters.Vitals = this.modules.vitals.model
+      if (this.modules.samples.value === true) structure.Encounters.Samples = this.modules.samples.model
+      if (this.modules.medications.value === true) structure.Encounters.Medications = this.modules.medications.model
+      if (this.modules.injuries.value === true) structure.Encounters.Injuries = this.modules.injuries.model
+
+      return structure
     }
   }
 }
