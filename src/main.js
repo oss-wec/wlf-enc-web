@@ -4,8 +4,10 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import ToggleButton from 'vue-js-toggle-button'
+import Popover from 'vue-js-popover'
 
 Vue.use(ToggleButton)
+Vue.use(Popover)
 
 Vue.config.productionTip = false
 

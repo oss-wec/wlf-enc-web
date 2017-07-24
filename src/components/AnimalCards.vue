@@ -4,9 +4,10 @@
       <div class="row">
         <!-- species and id -->
         <div class="col-4 col-md-3 col-lg-2">
-          <span class="label"><p>NDOW ID</p></span>
+          <span class="label"><p>{{ animal.species }}</p></span>
           <span class="block field upper">
-            {{ animal.species }}-{{ animal.ndow_id }}
+            <!-- {{ animal.species }}-{{ animal.ndow_id }} -->
+            {{ animal.ndow_id }}
           </span>
         </div>
 
@@ -58,24 +59,38 @@ export default {
   components: {
     AnimalCardFooter
   },
+
   props: ['animal'],
+
   data () {
     return {
       isOpen: false,
       isActive: false,
       colors: {
-        rbhs: '#7d4fff',
-        mtli: '#ffa726',
-        prgn: '#90358b',
-        cbhs: '#45d1ff',
-        muld: '#2e7032',
-        mtgt: '#294ff6',
-        rmel: '#e53935',
-        blbr: '#795548',
-        dbhs: '#ffd54f'
+        frog: '#1b5233;',
+        snake: '#21653f',
+        toad: '#28784b',
+        turtle: '#2e8b47',
+        lizard: '#349e63',
+        bat: '#012345',
+        musteloid: '#123456',
+        rodent: '#234567',
+        moleshrew: '#345678',
+        lagomorph: '#456789',
+        carnivore: '#d35400',
+        ungulate: '#8a714b',
+        migratoryupland: '#dab10d',
+        upland: '#F1C40F',
+        raptor: '#612e76',
+        nearpasserine: '#703688',
+        passerine: '#7f3d9b',
+        seabird: '#8e44ad',
+        shorebird: '#9b50ba',
+        waterfowl: '#a563c1'
       }
     }
   },
+
   methods: {
     logInfo () {
       this.isActive = !this.isActive
@@ -87,13 +102,14 @@ export default {
       return date
     }
   },
+
   computed: {
     styleObject: function () {
       if (this.isActive) {
         return {
-          backgroundColor: this.colors[this.animal.species],
+          backgroundColor: this.colors[this.animal.subclass],
           color: '#fff',
-          border: `1px solid ${this.colors[this.animal.species]}`
+          border: `1px solid ${this.colors[this.animal.subclass]}`
         }
       }
     }
