@@ -22,7 +22,7 @@
         <li class="nav-item" v-popover:plus>
           <a class="nav-link" href="#"><i class="fa fa-fw fa-plus"></i></a>
           <popover name="plus">
-            <router-link :to="{ name: 'NewAnimal' }" class="dropdown-item">Encounter</router-link>
+            <router-link :to="{ name: 'NewAnimal' }" class="dropdown-item">New Encounter</router-link>
           </popover>
         </li>
 
@@ -40,13 +40,8 @@
 </template>
 
 <script>
-import { navbar } from 'vue-strap'
 
 export default {
-  components: {
-    navbar
-  },
-
   name: 'Navigation'
 }
 </script>

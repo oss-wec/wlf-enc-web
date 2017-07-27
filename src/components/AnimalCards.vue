@@ -3,11 +3,11 @@
     <div class="card-block">
       <div class="row">
         <!-- species and id -->
-        <div class="col-4 col-md-3 col-lg-2">
+        <div class="col-4 col-md-3 col-lg-3">
           <span class="label"><p>{{ animal.species }}</p></span>
           <span class="block field upper">
             <!-- {{ animal.species }}-{{ animal.ndow_id }} -->
-            {{ animal.ndow_id }}
+            ID: {{ animal.ndow_id }}
           </span>
         </div>
 
@@ -36,7 +36,7 @@
         </div>
 
         <!-- age  -->
-        <div class="col-2 hidden-md-down">
+        <div class="col-1 hidden-md-down">
           <span class="label">Age</span>
           <span class="block field">{{ animal.age }}</span>
         </div>
@@ -67,26 +67,34 @@ export default {
       isOpen: false,
       isActive: false,
       colors: {
-        frog: '#1b5233;',
-        snake: '#21653f',
-        toad: '#28784b',
-        turtle: '#2e8b47',
-        lizard: '#349e63',
-        bat: '#012345',
-        musteloid: '#123456',
-        rodent: '#234567',
-        moleshrew: '#345678',
-        lagomorph: '#456789',
-        carnivore: '#d35400',
-        ungulate: '#8a714b',
-        migratoryupland: '#dab10d',
-        upland: '#F1C40F',
-        raptor: '#612e76',
-        nearpasserine: '#703688',
-        passerine: '#7f3d9b',
-        seabird: '#8e44ad',
-        shorebird: '#9b50ba',
-        waterfowl: '#a563c1'
+        snake: '#138a72',
+        amphibian: '#16a085',
+        turtle: '#19b698',
+        lizard: '#1ccdaa',
+        bat: '#493b2b',
+        musteloid: '#564735',
+        ungulate: '#69543e',
+        rodent: '#796148',
+        lagomorph: '#896e52',
+        carnivore: '#997b5b',
+        shrewform: '#a58768',
+        owls: '#432051',
+        raptor: '#522863',
+        waterfowl: '#612f76',
+        shorebird: '#703688',
+        seabird: '#7f3d9a',
+        upland: '#8e44ad',
+        passerine: '#9b51ba',
+        pico: '#a563c1',
+        hummingbird: '#b076c8',
+        salmonid: '#20638f',
+        ostariophysian: '#2472a4',
+        cyprinodontiformes: '#2980b9',
+        perciformes: '#2e8ece',
+        misc_fish: '#409ad5',
+        bivalve: '#727f80',
+        gastropod: '#7f8c8d',
+        crustacean: '#409ad5'
       }
     }
   },
@@ -102,16 +110,22 @@ export default {
       return date
     }
   },
-
+//
   computed: {
-    styleObject: function () {
-      if (this.isActive) {
-        return {
-          backgroundColor: this.colors[this.animal.subclass],
-          color: '#fff',
-          border: `1px solid ${this.colors[this.animal.subclass]}`
-        }
+    styleObject () {
+      const color = this.colors[this.animal.grouping]
+      const style = {
+        borderWidth: '5px 1px 1px 1px',
+        borderStyle: 'solid',
+        borderColor: color
       }
+
+      if (this.isActive) {
+        style.color = '#fff'
+        style.backgroundColor = color
+      }
+
+      return style
     }
   }
 }
@@ -148,56 +162,6 @@ export default {
 
 .upper {
   text-transform: uppercase;
-}
-
-.rbhs {
-  border: 1px solid #7d4fff;
-  border-left: 10px solid #7d4fff;
-}
-
-.mtli {
-  border: 1px solid #FFA726;
-  border-left: 10px solid #FFA726;
-}
-
-.prgn {
-  border: 1px solid #90358b;
-  border-left: 10px solid #90358b;
-}
-
-.cbhs {
-  border: 1px solid #45d1ff;
-  border-left: 10px solid #45d1ff;
-}
-
-.muld {
-  border: 1px solid #2e7d32;
-  border-left: 10px solid #2e7d32;
-}
-
-.mtgt {
-  border: 1px solid #294ff6;
-  border-left: 10px solid #294ff6;
-}
-
-.rmel {
-  border: 1px solid #E53935;
-  border-left: 10px solid #E53935;
-}
-
-.blbr {
-  border: 1px solid #795548;
-  border-left: 10px solid #795548;
-}
-
-.dbhs {
-  border: 1px solid #FFD54F;
-  border-left: 10px solid #FFD54F;
-}
-
-.active {
-  background-color: blue;
-  color: white;
 }
 
 .card-footer {

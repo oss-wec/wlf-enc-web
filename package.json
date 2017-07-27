@@ -21,7 +21,6 @@
     "vue-js-toggle-button": "^1.0.9",
     "vue-moment": "^2.0.2",
     "vue-router": "^2.5.3",
-    "vue-strap": "^1.1.37",
     "vuex": "^2.3.1"
   },
   "devDependencies": {
