@@ -242,7 +242,7 @@
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Given</label>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" v-model="mark.date_given">
+                  <input type="date" class="form-control" v-model="mark.date_given">
                 </div>
                 <div class="col-sm-4">
                   <p class="form-text text-muted"><small>date mark was given to animal</small></p>
@@ -252,7 +252,7 @@
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Removed</label>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" v-model="mark.date_removed">
+                  <input type="date" class="form-control" v-model="mark.date_removed">
                 </div>
                 <div class="col-sm-4">
                   <p class="form-text text-muted"><small>date mark was removed from animal</small></p>
@@ -319,7 +319,7 @@
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Inservice</label>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" v-model="device.inservice">
+                  <input type="date" class="form-control" v-model="device.inservice">
                 </div>
                 <div class="col-sm-4">
                   <p class="form-text text-muted"><small>what date was the device deployed</small></p>
@@ -329,7 +329,7 @@
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Outservice</label>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" v-model="device.outservice">
+                  <input type="date" class="form-control" v-model="device.outservice">
                 </div>
                 <div class="col-sm-4">
                   <p class="form-text text-muted"><small>what date was the device removed</small></p>
@@ -418,7 +418,7 @@
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Notes</label>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" v-model="biometric.notes">
+                  <textarea rows="3" class="form-control" v-model="biometric.notes"></textarea>
                 </div>
                 <div class="col-sm-4">
                   <p class="form-text text-muted"><small>any miscellaneous notes about this measurement</small></p>
@@ -450,7 +450,7 @@
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Time Recorded</label>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" v-model="vital.time_rec">
+                  <input type="time" class="form-control" v-model="vital.time_rec">
                 </div>
                 <div class="col-sm-4">
                   <p class="form-text text-muted"><small>what time was the vital sign recorded</small></p>
@@ -495,7 +495,7 @@
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Notes</label>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" v-model="vital.notes">
+                  <textarea rows="3" class="form-control" v-model="vital.notes"></textarea>
                 </div>
                 <div class="col-sm-4">
                   <p class="form-text text-muted"><small>miscellaneous notes associated with this vital sign</small></p>
@@ -687,7 +687,7 @@
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Time Administered</label>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" v-model="med.med_time">
+                  <input type="time" class="form-control" v-model="med.med_time">
                 </div>
                 <div class="col-sm-4">
                   <p class="form-text text-muted"><small>what time was the medication given</small></p>
@@ -740,7 +740,7 @@
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Notes</label>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" v-model="med.med_notes">
+                  <textarea class="form-control" v-model="med.med_notes" rows="3"></textarea>
                 </div>
                 <div class="col-sm-4">
                   <p class="form-text text-muted"><small>miscellaneous notes about this medication</small></p>
@@ -820,7 +820,7 @@
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Description</label>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" v-model="injury.injury_description">
+                  <textarea class="form-control" v-model="injury.injury_description" rows="3"></textarea>
                 </div>
                 <div class="col-sm-4">
                   <p class="form-text text-muted"><small>detailed description of the injury</small></p>
@@ -830,7 +830,7 @@
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Treatment</label>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" v-model="injury.injury_treatment">
+                  <textarea class="form-control" v-model="injury.injury_treatment" rows="3"></textarea>
                 </div>
                 <div class="col-sm-4">
                   <p class="form-text text-muted"><small>detailed description about the treatment</small></p>
@@ -976,7 +976,7 @@
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Necropsy Date</label>
             <div class="col-sm-10">
-              <input type="text" v-model="modules.necropsy.model.necropsy_date" class="form-control">
+              <input type="date" v-model="modules.necropsy.model.necropsy_date" class="form-control">
             </div>
           </div>
 

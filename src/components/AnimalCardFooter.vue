@@ -86,6 +86,7 @@ import moment from 'moment'
 
 export default {
   props: ['animal'],
+
   methods: {
     humanDate (date) {
       date = moment(date).format('l')
