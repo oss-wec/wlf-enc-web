@@ -23,6 +23,7 @@
           <a class="nav-link" href="#"><i class="fa fa-fw fa-plus"></i></a>
           <popover name="plus">
             <router-link :to="{ name: 'NewAnimal' }" class="dropdown-item">New Encounter</router-link>
+            <router-link :to="{ name: 'NewProject' }" class="dropdown-item">New Project</router-link>
           </popover>
         </li>
 
