@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="container">
-
+    <button @click="getSpeciesList">Get Species List</button>
     <form>
       <!-- encounter -->
       <div class="card">
@@ -19,7 +19,24 @@
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Species</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" v-model="modules.animal.model.species_id">
+              <!-- <input type="text" class="form-control" v-model="modules.animal.model.species_id"> -->
+              <!-- <Multiselect
+                v-model="modules.animal.model.species_id"
+                placeholder="Select one"
+                :options="speciesList.data"
+                :allow-empty="true",
+                label="common_name"></Multiselect> -->
+                <multiselect
+                  v-model="modules.animal.species"
+                  :options="speciesList.data"
+                  label="common_name"
+                  :searchable="true"
+                  :close-on-select="true"
+                  :show-labels="true"
+                  placeholder="Pick a value"
+                  @select="onSelect">
+                </multiselect>
+
             </div>
             <div class="col-sm-4">
               <p class="form-text text-muted"><small>select a species from the dropdown</small></p>
@@ -1105,9 +1122,15 @@
 
 <script>
 import axios from 'axios'
+import Multiselect from 'vue-multiselect'
 import { sentenceCase } from '../utils/utils'
+import { getSpeciesList } from '../utils/api'
 
 export default {
+  components: {
+    Multiselect
+  },
+
   data () {
     return {
       modules: {
@@ -1115,6 +1138,7 @@ export default {
           name: 'animal',
           display: 'animal',
           value: true,
+          species: { id: null },
           model: {
             animal_id: null,
             species_id: null, // TODO: select component
@@ -1275,6 +1299,10 @@ export default {
             studies: null
           }
         }
+      },
+      speciesList: {
+        loaded: false,
+        data: []
       }
     }
   },
@@ -1282,6 +1310,18 @@ export default {
   methods: {
     jsonData (data) {
       return JSON.stringify(data, true, 2)
+    },
+
+    onSelect (option) {
+      this.modules.animal.model.species_id = option.id
+    },
+
+    getSpeciesList () {
+      getSpeciesList()
+      .then(res => {
+        this.speciesList.data = res.data.data.species
+      })
+      .catch(err => console.log(err))
     },
 
     submitAnimal () {
@@ -1377,6 +1417,8 @@ export default {
   }
 }
 </script>
+
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 
 <style lang="css" scoped>
 .card {

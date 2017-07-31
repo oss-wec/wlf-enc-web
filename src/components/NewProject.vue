@@ -63,6 +63,7 @@
           </div>
         </div>
 
+        <button type="button" name="button" @click.prevent="submit" class="btn btn-primary">Submit</button>
       </form>
 
       <pre><code>{{ $data }}</code></pre>
@@ -73,6 +74,7 @@
 
 <script>
 import Navigation from './Navigation'
+import axios from 'axios'
 
 export default {
   name: 'NewProject',
@@ -88,6 +90,14 @@ export default {
       endDate: null,
       description: null,
       location: null
+    }
+  },
+
+  methods: {
+    submit () {
+      axios.post('http://localhost:1313/projects', this.structure)
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
     }
   },
 
