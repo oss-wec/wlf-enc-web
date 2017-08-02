@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="container">
-    <button @click="getSpeciesList">Get Species List</button>
+    <button @click="getProjectList">Get Species List</button>
     <form>
       <!-- encounter -->
       <div class="card">
@@ -19,13 +19,6 @@
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Species</label>
             <div class="col-sm-6">
-              <!-- <input type="text" class="form-control" v-model="modules.animal.model.species_id"> -->
-              <!-- <Multiselect
-                v-model="modules.animal.model.species_id"
-                placeholder="Select one"
-                :options="speciesList.data"
-                :allow-empty="true",
-                label="common_name"></Multiselect> -->
                 <multiselect
                   v-model="modules.animal.species"
                   :options="speciesList.data"
@@ -33,10 +26,27 @@
                   :searchable="true"
                   :close-on-select="true"
                   :show-labels="true"
-                  placeholder="Pick a value"
-                  @select="onSelect">
+                  placeholder="Pick a value">
                 </multiselect>
+            </div>
+            <div class="col-sm-4">
+              <p class="form-text text-muted"><small>select a species from the dropdown</small></p>
+            </div>
+          </div>
 
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Project</label>
+            <div class="col-sm-6">
+                <multiselect
+                  v-model="modules.encounter.project"
+                  :options="projectList"
+                  label="proj_name"
+                  :searchable="true"
+                  :close-on-select="true"
+                  :show-labels="true"
+                  placeholder="Pick a value"
+                  >
+                </multiselect>
             </div>
             <div class="col-sm-4">
               <p class="form-text text-muted"><small>select a species from the dropdown</small></p>
@@ -1121,10 +1131,10 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 import Multiselect from 'vue-multiselect'
 import { sentenceCase } from '../utils/utils'
-import { getSpeciesList } from '../utils/api'
+import { getSpeciesList, getProjectList, createAnimals } from '../utils/api'
 
 export default {
   components: {
@@ -1150,7 +1160,9 @@ export default {
           display: 'encounter',
           value: true,
           show: true,
+          project: { id: null },
           model: {
+            project: null,
             status: null,
             age: null,
             event_date: null,
@@ -1300,6 +1312,7 @@ export default {
           }
         }
       },
+      projectList: [],
       speciesList: {
         loaded: false,
         data: []
@@ -1312,8 +1325,8 @@ export default {
       return JSON.stringify(data, true, 2)
     },
 
-    onSelect (option) {
-      this.modules.animal.model.species_id = option.id
+    onSelect (module, field, option) {
+      this.modules[module].model[field] = option.id
     },
 
     getSpeciesList () {
@@ -1324,10 +1337,15 @@ export default {
       .catch(err => console.log(err))
     },
 
-    submitAnimal () {
-      // const animal = JSON.stringify(this.structure)
+    getProjectList () {
+      getProjectList()
+      .then(res => { this.projectList = res.data.data.projects })
+      .catch(err => console.log(err))
+    },
 
-      axios.post('http://localhost:1313/events/test', this.structure)
+    submitAnimal () {
+      createAnimals(this.structure)
+      // axios.post('http://localhost:1313/events/test', this.structure)
       .then(res => console.log(res))
       .catch(err => console.log(err.response.data))
     },
@@ -1366,6 +1384,11 @@ export default {
     }
   },
 
+  mounted: function () {
+    this.getSpeciesList()
+    this.getProjectList()
+  },
+
   computed: {
     parsedLabIds () {
       const str = this.modules.labids.model.lab_id
@@ -1387,9 +1410,10 @@ export default {
       const encounter = this.modules.encounter.model
       const structure = {
         animal_id: animal.animal_id,
-        species_id: animal.species_id,
+        species_id: this.modules.animal.species.id,
         sex: animal.sex,
         Encounters: {
+          project_id: this.modules.encounter.project.id,
           status: encounter.status,
           age: encounter.age,
           event_date: encounter.event_date,

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from 'axios'
+import { getAnimals } from '../utils/api'
 
 Vue.use(Vuex)
 
@@ -60,7 +60,8 @@ const getters = {
 
 const actions = {
   getAnimals ({ commit }) {
-    axios.get('http://localhost:1313/elements')
+    getAnimals()
+    // axios.get('http://localhost:1313/elements')
     // axios.get('http://34.208.55.29:1313/elements')
     .then(response => commit('setAnimals', { animals: response.data.data }))
     .catch(err => console.log(err))

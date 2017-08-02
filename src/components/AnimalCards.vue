@@ -3,7 +3,7 @@
     <div class="card-block">
       <div class="row">
         <!-- species and id -->
-        <div class="col-4 col-md-3 col-lg-3">
+        <div class="col-4 col-md-4 col-lg-2">
           <span class="label"><p>{{ animal.species }}</p></span>
           <span class="block field upper">
             <!-- {{ animal.species }}-{{ animal.ndow_id }} -->
@@ -12,19 +12,19 @@
         </div>
 
         <!-- date -->
-        <div class="col-4 col-md-3 col-lg-2">
+        <div class="col-4 col-md-3 col-lg-1">
           <span class="label">Date</span>
           <span class="block field">{{ humanDate(animal.date) }}</span>
         </div>
 
         <!-- hunt unit -->
-        <div class="col-2 col-md-2 col-lg-1">
-          <span class="label">HU</span>
-          <span class="block field">{{ animal.hunt_unit }}</span>
+        <div class="col-2 col-md-4 col-lg-3">
+          <span class="label">Project</span>
+          <span class="block field">{{ animal.project }}</span>
         </div>
 
         <!-- status -->
-        <div class="col-2 col-md-3 col-lg-2 hidden-sm-down">
+        <div class="col-2 col-md-3 col-lg-2 hidden-md-down">
           <span class="label">Status</span>
           <span class="block field">{{ animal.status }}</span>
         </div>

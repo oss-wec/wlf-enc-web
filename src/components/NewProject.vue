@@ -74,7 +74,7 @@
 
 <script>
 import Navigation from './Navigation'
-import axios from 'axios'
+import { createProject } from '../utils/api'
 
 export default {
   name: 'NewProject',
@@ -95,7 +95,8 @@ export default {
 
   methods: {
     submit () {
-      axios.post('http://localhost:1313/projects', this.structure)
+      // axios.post('http://localhost:1313/projects', this.structure)
+      createProject(this.structure)
       .then(res => console.log(res))
       .catch(err => console.log(err))
     }
